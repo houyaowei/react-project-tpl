@@ -1,0 +1,44 @@
+{
+  "name": "hc-portal-fe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "hc",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "React-Router",
+    "Redux",
+    "Redux-Saga",
+    "Webpack",
+    "ES6"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p --config webpack.config.build.js",
+    "start:dev": "webpack-dev-server -d --hot --open"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bable-loader": "^0.0.1-security",
+    "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.8",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.10.1"
+  }
+}
