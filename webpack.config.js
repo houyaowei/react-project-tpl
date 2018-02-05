@@ -37,7 +37,7 @@ module.exports = {
             title: "hc-portal-fe",
             template : "./app/assets/index.html",
             files : {
-                css : ["./app/assets/css/bootstrap.min.css"]
+                //  css : ["./app/assets/css/bootstrap.min.css"]
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -56,7 +56,8 @@ module.exports = {
               from: 'app/assets/css/bootstrap.min.css',
               to: 'css/bootstrap.min.css'
             }
-          ])
+          ]),
+          new ExtractTextPlugin("styles.css")
     ],
     module : {
         rules : [
@@ -78,7 +79,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 options: {
-                    presets: ["es2015",'react']
+                    presets: ['react',"es2015"]
                 }
             },
             {

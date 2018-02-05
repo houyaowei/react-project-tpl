@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "./Header";
 
-class Home extends React.Component {
+class Monitor2 extends React.Component {
     constructor(props){
         super(props);
         
@@ -12,11 +11,14 @@ class Home extends React.Component {
     render(){
         return (
             <div>
-                this is dashboard
+                <ul>
+                    <li>dd</li>
+                    <li>ee</li>
+                    <li>ff</li>
+                </ul>
             </div>
         );
     }
 }
-Home.defaultProps = {
-}
-export default Home;
+
+export default Monitor2;

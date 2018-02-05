@@ -1,8 +1,9 @@
 import React from "react";
 import {render} from "react-dom";
-import Portal from "./components/index";
+import Routes from "./routes/Routes";
+
 
 render(
-    <Portal/>,
+    <Routes/>,
     document.getElementById('content')
 );

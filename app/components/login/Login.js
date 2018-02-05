@@ -1,45 +1,51 @@
 import React from  "react";
-import {Form,FormGroup,Col,FormControl,Checkbox,Button} from "react-bootstrap";
+import {Button,FormControl,FormGroup,ControlLabel} from "react-bootstrap";
+import "./login.css";
 
 class Login extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            name : "",
+            pass : ""
+        };
+        //bind this
+        this.handleChange = this.handleChange.bind(this);
+        this.login = this.login.bind(this);
+    }
+    handleChange(e) {
+        
+    }
+    login(){
+        localStorage.setItem('loggedIn',true);
+        this.props.history.push('/home');
     }
     render(){
         return (
-            <Form horizontal>
-                <FormGroup controlId="formHorizontalEmail">
-                    <Col  sm={2}>
-                        Email
-                    </Col>
-                    <Col sm={4}>
-                        <FormControl type="email" placeholder="Email" />
-                    </Col>
+            <form className="login-form">
+                <FormGroup controlId="formBasicText">
+                    <ControlLabel>userName</ControlLabel>
+                    <FormControl
+                        type="text"
+                        key ="userName"
+                        placeholder="user name"
+                        onChange={this.handleChange}
+                    />
+                    <ControlLabel>password</ControlLabel>
+                    <FormControl
+                        type="password"
+                        key ="password"
+                        placeholder="password"
+                        onChange={this.handleChange}
+                    />
+                    <Button bsStyle="primary" onClick={this.login}>Primary</Button>
                 </FormGroup>
-
-                <FormGroup controlId="formHorizontalPassword">
-                    <Col  sm={2}>
-                        Password
-                    </Col>
-                    <Col sm={4}>
-                        <FormControl type="password" placeholder="Password" />
-                    </Col>
-                </FormGroup>
-
-                <FormGroup>
-                    <Col smOffset={2} sm={3}>
-                        <Checkbox>Remember me</Checkbox>
-                    </Col>
-                </FormGroup>
-
-                <FormGroup>
-                    <Col smOffset={2} sm={3}>
-                        <Button type="submit" onClick={() => alert('click')}>Sign in</Button>
-                    </Col>
-                </FormGroup>
-            </Form>
+            </form>
         );
     }
+};
+Login.propTypes = {
+
 };
 
 export default Login;
