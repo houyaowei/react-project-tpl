@@ -11,7 +11,7 @@ class Header extends React.Component {
         this.onLogout = this.onLogout.bind(this);
     }
     onLogout() {
-        localStorage.setItem('loggedIn', '')
+        localStorage.removeItem('loggedIn', '')
         this.setState({loggedIn: false})
     }
     render(){

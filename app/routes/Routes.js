@@ -8,7 +8,7 @@ import Container from "../container/Container"
 import AsideContainer from "../container/AsideContainer"
 import RenderRoutes from '../components/commons/RenderRoutes';
 
-import Login from "../components/login/Login";
+import LoginContainer from "../components/login/LoginContainer";
 import Home from "../components/home/Home";
 import Monitor from "../components/home/aside/Monitor";
 import Monitor2 from "../components/home/aside/Monitor2";
@@ -37,7 +37,7 @@ const routesConfig = [
 export default () => (
     <Router>
       <Switch>
-        <Route path='/login' exact component={Login} />
+        <Route path='/login' exact component={LoginContainer} />
         <Container>
           <Switch>
             {routesConfig.map((route, i) => (

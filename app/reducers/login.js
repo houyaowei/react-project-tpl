@@ -2,16 +2,16 @@ import * as types from '../constants/ActionTypes'
 import Immutable from 'immutable'
 
 const initState = Immutable.Map({
-  count: 0 
+  login: false
 });
 
-const increation = (state = initState, action) => {
+const login = (state = initState, action) => {
     switch(action.type){
-        case types.INCREATMENT_NUMBER :
-            return state.set("count", 6);  
+        case types.LOGIN :
+            return state.set("login", true);    
         default:
             return state;    
     }
 }
 
-export default increation;
+export default login;

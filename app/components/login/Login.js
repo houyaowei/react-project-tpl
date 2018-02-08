@@ -1,4 +1,6 @@
 import React from  "react";
+import ReactDOM from "react-dom";
+import {Redirect } from 'react-router-dom'
 import {Button,FormControl,FormGroup,ControlLabel} from "react-bootstrap";
 import "./login.css";
 
@@ -9,18 +11,22 @@ class Login extends React.Component {
             name : "",
             pass : ""
         };
-        //bind this
-        this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
     }
-    handleChange(e) {
-        
+    componentDidUpdate(){
+        if (this.props.Login.get("login")) {
+            this.props.history.push('/home');
+        }
     }
     login(){
         localStorage.setItem('loggedIn',true);
-        this.props.history.push('/home');
+        var userName = ReactDOM.findDOMNode(this.refs.userName).value;
+        var password = ReactDOM.findDOMNode(this.refs.password).value;
+
+        this.props.actions.login();
     }
     render(){
+        
         return (
             <form className="login-form">
                 <FormGroup controlId="formBasicText">
@@ -28,6 +34,7 @@ class Login extends React.Component {
                     <FormControl
                         type="text"
                         key ="userName"
+                        ref="userName"
                         placeholder="user name"
                         onChange={this.handleChange}
                     />
@@ -35,6 +42,7 @@ class Login extends React.Component {
                     <FormControl
                         type="password"
                         key ="password"
+                        ref="password"
                         placeholder="password"
                         onChange={this.handleChange}
                     />
