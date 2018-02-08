@@ -15,7 +15,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -p --config webpack.config.build.js",
-    "start:dev": "webpack-dev-server -d --hot --open"
+    "start:dev": "webpack-dev-server -d --hot --history-api-fallback --open"
   },
   "dependencies": {
     "antd": "1.x",

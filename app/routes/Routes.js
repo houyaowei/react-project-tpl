@@ -2,7 +2,8 @@ import React from "react";
 import {
     BrowserRouter as Router,
     Route,
-    Switch
+    Switch,
+    browserHistory
 } from 'react-router-dom';
 import Container from "../container/Container"
 import AsideContainer from "../container/AsideContainer"
@@ -35,7 +36,7 @@ const routesConfig = [
 ]
 
 export default () => (
-    <Router>
+    <Router history={browserHistory}>
       <Switch>
         <Route path='/login' exact component={LoginContainer} />
         <Container>
