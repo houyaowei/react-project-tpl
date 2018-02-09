@@ -11,6 +11,7 @@ class Login extends React.Component {
             name : "",
             pass : ""
         };
+        console.log(props);
         this.login = this.login.bind(this);
     }
     componentDidUpdate(){

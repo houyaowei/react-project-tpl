@@ -8,6 +8,7 @@ const initState = Immutable.Map({
 const login = (state = initState, action) => {
     switch(action.type){
         case types.LOGIN :
+            console.log("reducer->login");
             return state.set("login", true);    
         default:
             return state;    
