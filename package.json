@@ -18,7 +18,6 @@
     "start:dev": "webpack-dev-server -d --hot --history-api-fallback --open"
   },
   "dependencies": {
-    "antd": "1.x",
     "babel-polyfill": "^6.26.0",
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",

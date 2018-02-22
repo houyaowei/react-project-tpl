@@ -11,12 +11,14 @@ class Login extends React.Component {
             name : "",
             pass : ""
         };
-        console.log(props);
         this.login = this.login.bind(this);
     }
     componentDidUpdate(){
+        console.log(this.props.Login.get("login"));
         if (this.props.Login.get("login")) {
             this.props.history.push('/home');
+        }else {
+            localStorage.clear();
         }
     }
     login(){
@@ -24,7 +26,7 @@ class Login extends React.Component {
         var userName = ReactDOM.findDOMNode(this.refs.userName).value;
         var password = ReactDOM.findDOMNode(this.refs.password).value;
 
-        this.props.actions.login();
+        this.props.actions.login(userName,password);
     }
     render(){
         

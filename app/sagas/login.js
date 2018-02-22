@@ -1,4 +1,4 @@
-import { put, call, take, select } from 'redux-saga/effects'
+import { put, call, take } from 'redux-saga/effects'
 import * as actionTypes from '../constants/actionTypes'
 import {loginMethod } from './apiCall';
 
@@ -7,17 +7,21 @@ export function* login() {
       console.log("saga-> login");
       var loginStatus = yield call(loginMethod);
       console.log("loginStatus:" + loginStatus);
-      yield put({type: actionTypes.LOGIN, loginStatus: loginStatus });
+      yield put({type: actionTypes.LOGIN_SAGA, loginStatus: loginStatus });
 
     } catch (err) {
       yield put({type: actionTypes.ERROR})
     }
   }
   
-  export function* loginFlow() {
+  export function* loginFlow({payload}) {
     console.log("saga-> loginFlow");
-    // let response = yield call(login, request.value)
-    yield call(login)
+    const {name, pass} = payload;
+    console.log("userName:"+ name);
+    let response = yield call(login, payload);
+    //let request = yield take(actionTypes.XAHC_LOGIN)
+    //console.log(request.name,request.pass);
+    //yield call(login)
   }
 
 

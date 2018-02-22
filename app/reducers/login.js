@@ -2,14 +2,14 @@ import * as types from '../constants/ActionTypes'
 import Immutable from 'immutable'
 
 const initState = Immutable.Map({
-  login: false
+    loginStatus: false
 });
 
 const login = (state = initState, action) => {
     switch(action.type){
-        case types.LOGIN :
+        case types.LOGIN_SAGA:
             console.log("reducer->login");
-            return state.set("login", true);    
+            return state.set("loginStatus", action.loginStatus.login);    
         default:
             return state;    
     }

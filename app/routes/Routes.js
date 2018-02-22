@@ -10,6 +10,7 @@ import AsideContainer from "../container/AsideContainer"
 import RenderRoutes from '../components/commons/RenderRoutes';
 
 import LoginContainer from "../components/login/LoginContainer";
+//import Login from "../components/login/Login";
 import Home from "../components/home/Home";
 import Monitor from "../components/home/aside/Monitor";
 import Monitor2 from "../components/home/aside/Monitor2";

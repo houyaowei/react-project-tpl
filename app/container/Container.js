@@ -7,14 +7,14 @@ class Container extends React.Component {
         super(props);
         this.state = {
             loggedIn: localStorage.getItem('loggedIn')
-          }
+        }
     }
     render(){
         if (!this.state.loggedIn) {
             return (
               <Redirect to='/login' />
             )
-          } else if (this.props.location.pathname === '/') {
+          } else {
             return (
               <Redirect to='/home' />
             )

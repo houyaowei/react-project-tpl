@@ -4,5 +4,5 @@ import * as types from '../constants/ActionTypes'
 import {loginFlow} from "./login"
 
 export default function* mySaga() {
-    yield* takeEvery(types.LOGIN, loginFlow);
+    yield* takeEvery(types.XAHC_LOGIN, loginFlow);
 }

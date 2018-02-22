@@ -1,13 +1,13 @@
 import * as types from "../constants/ActionTypes";
 
-export const increate = () => {
-    dispatch({
-        type: types.INCREATMENT_NUMBER
-    })
-}
-export const login = (value) => {
+export const login = (name,pass) => {
     console.log("action->login");
     return {
-        type: types.LOGIN
+        type: types.XAHC_LOGIN,
+        // 
+        payload : {
+            name,
+            pass
+        }        
     }
 }

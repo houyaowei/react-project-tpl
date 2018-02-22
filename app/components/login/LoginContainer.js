@@ -6,7 +6,7 @@ import * as actions from "../../actions/index"
 
 const mapStateToProps = (state) => {
     return {
-      Login: state.login
+      Login: state.loginStatus
     }
 }
   
