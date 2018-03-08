@@ -18,9 +18,15 @@
     "start:dev": "webpack-dev-server -d --hot --history-api-fallback --open"
   },
   "dependencies": {
+    "antd": "^3.2.3",
+    "babel-plugin-import": "^1.6.5",
     "babel-polyfill": "^6.26.0",
+    "echarts": "^4.0.4",
+    "history": "^4.7.2",
     "immutable": "^3.8.2",
+    "less-loader": "^4.0.6",
     "lodash": "^4.17.4",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
@@ -48,5 +54,18 @@
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.1"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "import",
+        [
+          {
+            "libraryName": "antd",
+            "style": "css"
+          }
+        ]
+      ]
+    ]
   }
 }

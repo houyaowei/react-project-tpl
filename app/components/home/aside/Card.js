@@ -1,6 +1,6 @@
 import React from "react";
 
-class Monitor2 extends React.Component {
+class Card extends React.Component {
     constructor(props){
         super(props);
         
@@ -21,4 +21,4 @@ class Monitor2 extends React.Component {
     }
 }
 
-export default Monitor2;
+export default Card;

@@ -1,6 +1,6 @@
 import React from "react";
 
-class Monitor extends React.Component {
+class Table extends React.Component {
     constructor(props){
         super(props);
         
@@ -21,4 +21,4 @@ class Monitor extends React.Component {
     }
 }
 
-export default Monitor;
+export default Table;

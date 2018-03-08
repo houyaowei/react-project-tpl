@@ -6,8 +6,9 @@ import RenderRoutes from '../components/commons/RenderRoutes.js'
 export default ({ routes, path }) => (
   <div>
     <div className='aside-nav'>
-      <NavLink to="/monitor/v1">监控区一</NavLink>
-      <NavLink to="/monitor/v2">监控区二</NavLink>
+      <NavLink to="/basic/table">table</NavLink>
+      <NavLink to="/basic/card">card</NavLink>
+      <NavLink to="/basic/chart">charts</NavLink>
     </div>
 
     {

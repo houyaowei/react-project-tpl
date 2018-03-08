@@ -13,12 +13,17 @@ class Login extends React.Component {
         };
         this.login = this.login.bind(this);
     }
+    shouldComponentUpdate(nextProps, nextState){
+        console.log(nextProps + ",," + nextState);
+        return true;
+    }
     componentDidUpdate(){
-        console.log(this.props.Login.get("login"));
-        if (this.props.Login.get("login")) {
+        console.log(this.props.Login.get("loginStatus"));
+        if (this.props.Login.get("loginStatus")) {
             this.props.history.push('/home');
         }else {
             localStorage.clear();
+            this.props.history.push('/login');
         }
     }
     login(){
@@ -32,14 +37,13 @@ class Login extends React.Component {
         
         return (
             <form className="login-form">
-                <FormGroup controlId="formBasicText">
+                <FormGroup>
                     <ControlLabel>userName</ControlLabel>
                     <FormControl
                         type="text"
                         key ="userName"
                         ref="userName"
                         placeholder="user name"
-                        onChange={this.handleChange}
                     />
                     <ControlLabel>password</ControlLabel>
                     <FormControl
@@ -47,7 +51,6 @@ class Login extends React.Component {
                         key ="password"
                         ref="password"
                         placeholder="password"
-                        onChange={this.handleChange}
                     />
                     <Button bsStyle="primary" onClick={this.login}>Primary</Button>
                 </FormGroup>

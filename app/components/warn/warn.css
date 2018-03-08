@@ -1,0 +1,22 @@
+#mapcon{
+    position: relative;
+}
+.bfb{
+    width: 300px;
+    height: 100px;
+    background-color: rgba(220, 230,220, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 80px;
+    border-radius: 6px;
+}
+#chart{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+#right{
+    width: 50%;
+    height: 100%;
+    float: left;
+}

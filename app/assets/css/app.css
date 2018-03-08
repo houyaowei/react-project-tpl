@@ -1,18 +1,10 @@
 body {
   margin: 0;
 }
-
-.pull-left {
-  float: left;
-  height: 50px;
-  line-height: 50px;
+.inline-block {
+  display: inline-block;
 }
 
-.pull-right {
-  float: right;
-  height: 50px;
-  line-height: 50px;
-}
 
 .login-wrap {
   width: 290px;
@@ -54,51 +46,9 @@ body {
   width: 100%;
 }
 
-header {
-  background-color: #f9fafb;
-  box-shadow: 0 2px 5px #ccc;
-}
-header h1 {
-  display: inline-block;
-  margin: .4em 1em .5em 1em;
-  font-size: 1.5rem;
-  vertical-align: middle;
-}
-header a {
-  margin: 0 10px;
-  color: #000;
-  text-decoration: none;
-  vertical-align: middle;
-}
-header .router-link-active {
-  color: red;
-}
-header strong {
-  display: inline-block;
-  margin-top: 1.3em;
-}
-
-header .active {
-  color: #f00;
-}
-
-.header-info {
-  line-height: 28px;
-  display: inline-block;
-  margin-top: 1em;
-  margin-right: 2em;
-}
-
-.header-info .logout {
-  cursor: pointer;
-}
-
-.header-info .logout:hover {
-  color: #ffa500;
-}
-
 .main-layout {
-  margin-top: 65px;
+  /* 有地图操作的需要动态增加marginTop:50*/
+  /* margin-top: 50px; */
 }
 
 .home {
@@ -116,6 +66,7 @@ header .active {
 }
 
 .aside-nav {
+  display: inline-block;
   float: left;
   width: 120px;
   margin: 0 50px 0 0;

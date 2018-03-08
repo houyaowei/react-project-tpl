@@ -11,3 +11,9 @@ export const login = (name,pass) => {
         }        
     }
 }
+export const logout = (name,pass) => {
+    console.log("action->logout");
+    return {
+        type: types.XAHC_LOGOUT     
+    }
+}

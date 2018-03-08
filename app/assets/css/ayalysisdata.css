@@ -1,0 +1,30 @@
+.right-body{
+    position: relative;
+    width:100%;
+}
+.nav{
+    position: fixed;
+    height: 100vh;
+}
+#smallMap{
+    margin-top: 10px;
+    width: 70%;
+    height: 60vh;
+}
+.heatmap-switch{
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.right-top{
+    margin-top: 30px;
+    width:100%;
+}
+
+.chart{
+    height:30vh;
+}
+.big-chart{
+    height:450px;
+    width:100%;
+}

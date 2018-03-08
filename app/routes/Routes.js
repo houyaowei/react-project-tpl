@@ -1,43 +1,61 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
+    Router,
     Route,
-    Switch,
-    browserHistory
+    Switch
 } from 'react-router-dom';
+import history from './history';
 import Container from "../container/Container"
 import AsideContainer from "../container/AsideContainer"
 import RenderRoutes from '../components/commons/RenderRoutes';
 
 import LoginContainer from "../components/login/LoginContainer";
 //import Login from "../components/login/Login";
+import  Conf from "../components/config/layout" 
 import Home from "../components/home/Home";
-import Monitor from "../components/home/aside/Monitor";
-import Monitor2 from "../components/home/aside/Monitor2";
-
+import table from "../components/home/aside/Table";
+import Card from "../components/home/aside/Card";
+import Chart from "../components/home/aside/Chart";
+import Analysis from "../components/analysis/Analysis";
+import warn from "../components/warn/warnLayout"
 //global router config
 const routesConfig = [
     { path: '/home',
       component: Home
     },
+    { path: '/config',
+    component: Conf
+    },
     {
-      path: "/monitor",
+      path:'/warning',
+      component:warn
+    },
+    {
+      path: "/basic",
       component: AsideContainer,
       children:[
         {
-          path : '/monitor/v1',
-          component: Monitor
+          path : '/basic/table',
+          component: table
         },
         {
-          path : '/monitor/v2',
-          component: Monitor2
+          path : '/basic/card',
+          component: Card
+        },
+        {
+          path : '/basic/chart',
+          component: Chart
         }
       ]
+    },
+    {
+        path: '/analysis',
+        component: Analysis
     }
 ]
 
 export default () => (
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Switch>
         <Route path='/login' exact component={LoginContainer} />
         <Container>

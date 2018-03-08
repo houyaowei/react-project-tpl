@@ -55,6 +55,10 @@ module.exports = {
             {
               from: 'app/assets/css/bootstrap.min.css',
               to: 'css/bootstrap.min.css'
+            },
+            {
+              from: 'app/assets/css/normalize.css',
+              to: 'css/normalize.css'
             }
           ]),
           new ExtractTextPlugin("styles.css")
