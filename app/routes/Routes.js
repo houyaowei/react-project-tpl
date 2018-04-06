@@ -57,15 +57,15 @@ const routesConfig = [
 export default () => (
     <Router history={history}>
       <Switch>
+        <Route path='/' exact component={LoginContainer} />
         <Route path='/login' exact component={LoginContainer} />
-        <Container>
+        {/* <Container>
           <Switch>
             {routesConfig.map((route, i) => (
               <RenderRoutes key={i} {...route} />
             ))}
-            {/* <Route component={NotFound} /> */}
           </Switch>
-        </Container>
+        </Container> */}
       </Switch>
     </Router>
   )

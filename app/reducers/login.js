@@ -10,6 +10,7 @@ const login = (state = initState, action) => {
     switch(action.type){
         case types.LOGIN_SAGA:
             console.log("reducer->login");
+            history.push("/home");
             return state.set("loginStatus", action.loginStatus.login);  
 
         case types.LOGOUT_SAGA:

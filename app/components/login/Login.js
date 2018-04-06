@@ -18,13 +18,7 @@ class Login extends React.Component {
         return true;
     }
     componentDidUpdate(){
-        console.log(this.props.Login.get("loginStatus"));
-        if (this.props.Login.get("loginStatus")) {
-            this.props.history.push('/home');
-        }else {
-            localStorage.clear();
-            this.props.history.push('/login');
-        }
+       
     }
     login(){
         localStorage.setItem('loggedIn',true);
