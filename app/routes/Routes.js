@@ -2,12 +2,13 @@ import React from "react";
 import {
     Router,
     Route,
+    IndexRedirect,
     Switch
 } from 'react-router-dom';
 import history from './history';
 import Container from "../container/Container"
 import AsideContainer from "../container/AsideContainer"
-import RenderRoutes from '../components/commons/RenderRoutes';
+import RenderRoutes from './RenderRoutes';
 
 import LoginContainer from "../components/login/LoginContainer";
 //import Login from "../components/login/Login";
@@ -32,7 +33,6 @@ const routesConfig = [
     },
     {
       path: "/basic",
-      component: AsideContainer,
       children:[
         {
           path : '/basic/table',
@@ -57,15 +57,17 @@ const routesConfig = [
 export default () => (
     <Router history={history}>
       <Switch>
-        <Route path='/' exact component={LoginContainer} />
+        <Route path="/" exact component={LoginContainer}>
+          <IndexRedirect to="/login" />
+        </Route>
         <Route path='/login' exact component={LoginContainer} />
-        {/* <Container>
+        { <Container>
           <Switch>
             {routesConfig.map((route, i) => (
               <RenderRoutes key={i} {...route} />
             ))}
           </Switch>
-        </Container> */}
+        </Container> }
       </Switch>
     </Router>
   )
