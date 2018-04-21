@@ -13,13 +13,6 @@ class Login extends React.Component {
         };
         this.login = this.login.bind(this);
     }
-    shouldComponentUpdate(nextProps, nextState){
-        console.log(nextProps + ",," + nextState);
-        return true;
-    }
-    componentDidUpdate(){
-       
-    }
     login(){
         localStorage.setItem('loggedIn',true);
         var userName = ReactDOM.findDOMNode(this.refs.userName).value;
