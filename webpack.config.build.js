@@ -8,7 +8,7 @@ module.exports = {
     resolve : {
         extensions : ['*', '.js', '.jsx', '.json']
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: false,
     
     entry : [
         path.resolve(__dirname ,'app/index.js')
@@ -16,7 +16,7 @@ module.exports = {
 
     output: {
         path: __dirname + "/dist",
-        //publicPath: '/',
+        publicPath: '/',
         filename: '[name].bundle.js'
     },
     devServer: {
@@ -25,25 +25,49 @@ module.exports = {
   		port: 9000
 	},
     plugins : [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('prod'),
-            __DEV__: true
-        }),
-        new CleanWebpackPlugin(['dist']),
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify('prod'),
+        //     __DEV__: true
+        // }),
+        // new CleanWebpackPlugin(['dist']),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
 		new HTMLWebpachPlugin({
 			title: "hc-portal-fe"
         }),
         new webpack.optimize.CommonsChunkPlugin({
 			name: 'duplication'
-		})
+        }),
+        new CopyWebpackPlugin([
+            {
+              from: 'app/assets/images',
+              to: 'images'
+            },
+            {
+              from: 'app/assets/index.html',
+              to: 'index.html'
+            },
+            {
+              from: 'app/assets/css/bootstrap.min.css',
+              to: 'css/bootstrap.min.css'
+            },
+            {
+              from: 'app/assets/css/normalize.css',
+              to: 'css/normalize.css'
+            }
+          ]),
+          new ExtractTextPlugin("styles.css")
     ],
     module : {
         rules : [
             {
                 test : /\.(png|jpg|svg|jpeg)$/,
-                use : [
-                    'file-loader'
-                ]
+                use : [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '/images/input/[name].[ext]'
+                    }
+                }]
             },
             {
                 test: /\.css$/,
