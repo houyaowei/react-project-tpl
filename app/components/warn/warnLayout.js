@@ -1,111 +1,78 @@
 import React from  "react";
+import ReactDOM from "react-dom";
+import { NavLink, Route, Redirect,Switch } from 'react-router-dom'
+import { browserHistory } from 'react-router';
 import "./warn.css";
+import PreWarn from "./preWarn/PreWarn";
+import Deploy from "./deploy/Deploy"
+import { Layout, Menu, Icon } from 'antd';
+const { Sider } = Layout;
+const SubMenu = Menu.SubMenu;
 
 class ControlLayout extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-           
-        }
+            current: '1',
+            collapsed: false,
+        };
+        this.handleClick = this.handleClick.bind(this);
+        this.onCollapse = this.onCollapse.bind(this);
     }
     componentDidMount(){
-        var map = new BMap.Map('map');
-        map.setMapStyle({style:'dark'});
-    var poi = new BMap.Point(116.307852,40.057031);
-    map.centerAndZoom(poi, 16);
-    map.enableScrollWheelZoom();  
-    var overlays = [];
-	var overlaycomplete = function(e){
-        overlays.push(e.overlay);
-    };
-    var styleOptions = {
-        strokeColor:"red",    //边线颜色。
-        fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
-        strokeWeight: 3,       //边线的宽度，以像素为单位。
-        strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
-        fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
-        strokeStyle: 'solid' //边线的样式，solid或dashed。
-    }
-    //实例化鼠标绘制工具
-    var drawingManager = new BMapLib.DrawingManager(map, {
-        isOpen: false, //是否开启绘制模式
-        enableDrawingTool: true, //是否显示工具栏
-        drawingToolOptions: {
-            anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
-            offset: new BMap.Size(5, 5), //偏离值
-        },
-        circleOptions: styleOptions, //圆的样式
-        polylineOptions: styleOptions, //线的样式
-        polygonOptions: styleOptions, //多边形的样式
-        rectangleOptions: styleOptions //矩形的样式
-    });  
-	 //添加鼠标绘制工具监听事件，用于获取绘制结果
-    drawingManager.addEventListener('overlaycomplete', overlaycomplete);
-
-    function clearAll() {
-		for(var i = 0; i < overlays.length; i++){
-            map.removeOverlay(overlays[i]);
-        }
-        overlays.length = 0   
-    }
-
-    var Chart = require('echarts');  //chart模块
-    var myChart = Chart.init(document.getElementById('chart'));
-    myChart.setOption({
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            x: 'left',
-            data:['直接访问','邮件营销']
-        },
-        series: [
-            {
-                name:'访问来源',
-                type:'pie',
-                radius: ['50%', '70%'],
-                avoidLabelOverlap: false,
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            fontSize: '15',
-                            fontWeight: 'bold'
-                        }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data:[
-                    {value:335, name:'直接访问'},
-                    {value:310, name:'邮件营销'},
-                ]
+        if(this.props.history.location.state){
+            if("dashboard" == this.props.history.location.state.from){
+                this.setState({current:"2"});
             }
-        ]
-    });
-
-
+        }
+    }
+    handleClick(e){
+        this.setState({
+            current: e.key,
+        });
+    }
+    selectWarning(){
+        this.setState({
+            current:2
+        });
+    }
+    onCollapse(collapsed){    
+        this.setState({ collapsed });
     }
     render(){
+        const warningPage = (props) => {
+            return (
+                <PreWarn selectWarning={this.selectWarning.bind(this)}
+                {...props} />
+            )
+        };
         return(
-            <div id="mapcon">
-                <div id="map" style={{height:"600px"}}>
-                    
+               <div className="right-body-container">
+                    <Sider
+                    collapsible
+                    collapsed={this.state.collapsed}
+                    onCollapse={this.onCollapse}
+                    >
+                        <Menu theme="dark" selectedKeys={[this.state.current]} mode="inline"  onClick={this.handleClick}>
+                            <Menu.Item key="1">
+                                <NavLink to='/warning'>
+                                    <Icon type="pie-chart" /><span>布控</span>
+                                </NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="2">
+                                <NavLink to='/warning/prewarn'>
+                                     <Icon type="desktop" /><span>预警</span>
+                                </NavLink>
+                            </Menu.Item>
+                        </Menu>
+                    </Sider>
+                   <div className="right-div-body">
+                       <Switch>
+                           <Route path="/warning/prewarn" render={warningPage} />
+                           <Route path="/warning/" exact component={Deploy}/>
+                       </Switch>
+                   </div>
                 </div>
-                <div className="bfb" >
-                    <div id="chart"></div>
-                    <div id="right"></div>
-                </div>
-            </div>
         )
     }
 }

@@ -1,52 +1,36 @@
 import React from "react";
-import { Cascader,Switch,Card,Col,Row } from 'antd';
+import * as ChartConfig from "../../../config/chartConfig";
+import * as analysisDataConfig from "../../../config/analysisDataConfig";
 var echarts = require('echarts');
 
-const options = [{
-    value: '广东',
-    label: '广东',
-    children: [{
-        value: '东莞',
-        label: '东莞',
-    },{
-        value: '广州',
-        label: '广州',
-    },{
-        value: '深圳',
-        label: '深圳',
-    }]
-}, {
-    value: '江苏',
-    label: '江苏',
-    children: [{
-        value: '南京',
-        label: '南京',
-    }],
-}];
 class AnalysisHome extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             title:'东莞',
+            numOfTotlePeople:257992,
+            numOfFlowPeople:148962,
+            numOfVisitPeople:54923,
+            numOfOldPeople:84793,
         };
+        this.timerID1 = null;
+        this.timerID2 = null;
+        this.timerHeat = null;
         this.map = null;
         this.heatmapOverlay = null;
-        this.toggleHeat = this.toggleHeat.bind(this);
-        this.chooseCity = this.chooseCity.bind(this);
+        // this.chooseCity = this.chooseCity.bind(this);
     }
-    toggleHeat(){
-        this.heatmapOverlay.toggle();
-    }
-    chooseCity(value){
-        console.log(value);
-        if(value.length===1){
-            this.map.centerAndZoom(value[0],9);
-            this.setState({title:value[0]})
-        }else if(value.length===2){
-            this.map.centerAndZoom(value[1],13);
-            this.setState({title:value[1]})
-        }
-    }
+
+    // chooseCity(value){
+    //     console.log(value);
+    //     if(value.length===1){
+    //         this.map.centerAndZoom(value[0],9);
+    //         this.setState({title:value[0]})
+    //     }else if(value.length===2){
+    //         this.map.centerAndZoom(value[1],13);
+    //         this.setState({title:value[1]})
+    //     }
+    // }
     componentDidMount(){
         this.map = new BMap.Map('smallMap');
         var poi = new BMap.Point(116.307852,40.057031);
@@ -54,167 +38,200 @@ class AnalysisHome extends React.Component {
         this.map.enableScrollWheelZoom();
         //添加热力图
         this.heatmapOverlay = new BMapLib.HeatmapOverlay({
-            "radius":20,
+            "radius":30,
             "visible":true,
             "opacity":70
         });
         this.map.addOverlay(this.heatmapOverlay);
         //模拟热点数据
-        var points =[
-            {"lng":116.302261,"lat":40.051984,"count":50},
-            {"lng":116.322332,"lat":40.056532,"count":51},
-            {"lng":116.299787,"lat":40.050658,"count":15},
-            {"lng":116.301455,"lat":40.050921,"count":40},
-            {"lng":116.321843,"lat":40.055516,"count":100},
-            {"lng":116.30246,"lat":40.058503,"count":6},
-            {"lng":116.301289,"lat":40.059989,"count":18},
-            {"lng":116.303162,"lat":40.055051,"count":80},
-            {"lng":116.321039,"lat":40.05782,"count":11},
-            {"lng":116.31387,"lat":40.057253,"count":7},
-            {"lng":116.31673,"lat":40.059426,"count":42},
-            {"lng":116.318107,"lat":40.056445,"count":4},
-            {"lng":116.307521,"lat":40.057943,"count":27},
-            {"lng":116.316812,"lat":40.050836,"count":23},
-            {"lng":116.315682,"lat":40.05463,"count":60},
-            {"lng":116.304424,"lat":40.054675,"count":8},
-            {"lng":116.309242,"lat":40.054509,"count":15},
-            {"lng":116.308766,"lat":40.051408,"count":25},
-            {"lng":116.305674,"lat":40.054396,"count":21},
-            {"lng":116.302261,"lat":40.051984,"count":50},
-            {"lng":116.322332,"lat":40.056532,"count":51},
-            {"lng":116.299787,"lat":40.050658,"count":15},
-            {"lng":116.301455,"lat":40.050921,"count":40},
-            {"lng":116.321843,"lat":40.055516,"count":100},
-            {"lng":116.30246,"lat":40.058503,"count":6},
-            {"lng":116.301289,"lat":40.059989,"count":18},
-            {"lng":116.305162,"lat":40.055051,"count":80},
-            {"lng":116.304039,"lat":40.05782,"count":11},
-            {"lng":116.30387,"lat":40.057253,"count":7},
-            {"lng":116.30273,"lat":40.059426,"count":42},
-            {"lng":116.301107,"lat":40.056445,"count":4},
-            {"lng":116.300521,"lat":40.057943,"count":27},
-            {"lng":116.299812,"lat":40.050836,"count":23},
-            {"lng":116.298682,"lat":40.05463,"count":60},
-            {"lng":116.297424,"lat":40.054675,"count":8},
-            {"lng":116.296242,"lat":40.054509,"count":15},
-            {"lng":116.295766,"lat":40.051408,"count":25},
-            {"lng":116.321674,"lat":40.054396,"count":58},
-            {"lng":116.321674,"lat":40.054396,"count":21},
-            {"lng":116.321674,"lat":40.054396,"count":34},
-            {"lng":116.321674,"lat":40.054396,"count":55},
-            {"lng":116.321674,"lat":40.054396,"count":23},
-            {"lng":116.321674,"lat":40.054396,"count":21},
-            {"lng":116.321674,"lat":40.054396,"count":15},
-            {"lng":116.321674,"lat":40.054396,"count":76},
-        ];
-        var testData ={data:points,max:200};
+        var points = analysisDataConfig.heatMapPoints;
+        var testData ={data:points[1],max:200};
         this.heatmapOverlay.setDataSet(testData);
-        this.heatmapOverlay.toggle();
+        var i =0;
+        this.timerHeat =setInterval(()=>{
+            if(i==0){
+                var testData ={data:points[0],max:200};
+                this.heatmapOverlay.setDataSet(testData);
+                i=1;
+            }else{
+                var testData ={data:points[1],max:200};
+                this.heatmapOverlay.setDataSet(testData);
+                i=0;
+            }
+        },2000)
         var myChart1 = echarts.init(document.getElementById('chart1'));
+        myChart1.setOption(ChartConfig.chart2);
         var myChart2 = echarts.init(document.getElementById('chart2'));
-        var myChart3 = echarts.init(document.getElementById('chart3'));
-        var option = [{
-            title: {
-                text: '各民族人口统计',
-                subtext: '单位/万人'
-            },
-            tooltip: {},
-            legend: {
-                data:['人数']
-            },
-            xAxis: {
-                data: ["汉族","回族","壮族","维吾尔族","满族"]
-            },
-            yAxis: {},
-            series: [{
-                name: '人数',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10]
-            }]
-        },{
-            title: {
-                text: '各民族人口TOP5',
-                subtext: '单位/万人'
-            },
-            tooltip: {},
-            legend: {
-                data:['人数']
-            },
-            xAxis: {
-            },
-            yAxis: {
-                data: ["汉族","回族","壮族","维吾尔族","满族"]
-            },
-            series: [{
-                name: '人数',
-                type: 'bar',
-                data: [9, 16, 18, 23, 30]
-            }]
-        },{
-            title : {
-                text: '各民族所占比例',
-                x:'center'
-            },
-            tooltip : {
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ["汉族","回族","壮族","维吾尔族","满族"]
-            },
-            series : [
-                {
-                    name: '民族',
-                    type: 'pie',
-                    radius : '55%',
-                    center: ['50%', '60%'],
-                    data:[
-                        {value:335, name:'满足'},
-                        {value:310, name:'维吾尔族'},
-                        {value:234, name:'壮族'},
-                        {value:135, name:'回族'},
-                        {value:1548, name:'汉族'}
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
+        myChart2.setOption(ChartConfig.warningResult);
+        var myChart4 = echarts.init(document.getElementById('chart4'));
+        
+        myChart4.setOption(analysisDataConfig.peopleOverview);
+        window.onresize = ()=>{
+            myChart1.resize();
+            myChart2.resize();
+            myChart4.resize();
+        }
+        function makeThreeNum(num){
+            var num = (num || "").toString();
+            return num;
+        }
+        function getRand(min, max){
+            return parseInt(Math.random()*(max-min)+min);
+        }
+        function addStep(base){
+            return (parseInt(getRand(1, 10)) + parseInt(base));
+        }
+        var w_old1 = this.state.numOfTotlePeople;
+        var w_old2 = this.state.numOfFlowPeople;
+        var w_old3 = this.state.numOfVisitPeople;
+        function update1(oldNum, newNum){
+            w_old1 = newNum;
+            var  oldNum = makeThreeNum(oldNum),
+                newNum = makeThreeNum(newNum),
+                numberHTML = '';
+            for (var i = 0; i < oldNum.length; i++) {
+                if(oldNum[i] !== newNum[i]){
+                    numberHTML += "<li class=\"group active\">" +
+                        "<span class=\"old\">" + oldNum[i] + "</span>" +
+                        "<span class=\"new\">" + newNum[i] + "</span></li>";
+                }else{
+                    numberHTML += "<li class=\"group\">" +
+                        "<span class=\"old\">" + oldNum[i] + "</span>" +
+                        "<span class=\"new\">" + newNum[i] + "</span></li>";
                 }
-            ]
-        }];
-        myChart1.setOption(option[0]);
-        myChart2.setOption(option[1]);
-        myChart3.setOption(option[2]);
+            }
+            document.getElementById('titleNumber1').innerHTML = numberHTML;
+        }
+        function update2(oldNum, newNum){
+            w_old2 = newNum;
+            var  oldNum = makeThreeNum(oldNum),
+                newNum = makeThreeNum(newNum),
+                numberHTML = '';
+            for (var i = 0; i < oldNum.length; i++) {
+                if(oldNum[i] !== newNum[i]){
+                    numberHTML += "<li class=\"group active\">" +
+                        "<span class=\"old\">" + oldNum[i] + "</span>" +
+                        "<span class=\"new\">" + newNum[i] + "</span></li>";
+                }else{
+                    numberHTML += "<li class=\"group\">" +
+                        "<span class=\"old\">" + oldNum[i] + "</span>" +
+                        "<span class=\"new\">" + newNum[i] + "</span></li>";
+                }
+            }
+            document.getElementById('titleNumber2').innerHTML = numberHTML;
+        }
+        function update3(oldNum, newNum){
+            w_old3 = newNum;
+            var  oldNum = makeThreeNum(oldNum),
+                newNum = makeThreeNum(newNum),
+                numberHTML = '';
+            for (var i = 0; i < oldNum.length; i++) {
+                if(oldNum[i] !== newNum[i]){
+                    numberHTML += "<li class=\"group active\">" +
+                        "<span class=\"old\">" + oldNum[i] + "</span>" +
+                        "<span class=\"new\">" + newNum[i] + "</span></li>";
+                }else{
+                    numberHTML += "<li class=\"group\">" +
+                        "<span class=\"old\">" + oldNum[i] + "</span>" +
+                        "<span class=\"new\">" + newNum[i] + "</span></li>";
+                }
+            }
+            document.getElementById('titleNumber3').innerHTML = numberHTML;
+        }
+        this.timerID1 =setInterval(()=>{
+            update1(w_old1, addStep(w_old1),'titleNumber1');
+            update3(w_old3, addStep(w_old3),'titleNumber3');
+        }, 2000);
+        this.timerID2 = setInterval(()=>{
+            update2(w_old2, addStep(w_old2),'titleNumber2');
+        }, 3000);
+    }
+    componentWillUnmount(){
+        clearInterval(this.timerID1);
+        clearInterval(this.timerHeat);
+        clearInterval(this.timerID2);
     }
     render(){
         return (
             <div className='right-body'>
-                <Cascader
-                    size="large"
-                    defaultValue={['广东', '东莞']}
-                    options={options}
-                    onChange={this.chooseCity}
-                    changeOnSelect
-                />
-                <div className="heatmap-switch">
-                    <span>热力图</span>
-                    <Switch id='switchButton' onChange={this.toggleHeat}  checkedChildren="开" unCheckedChildren="关"/>
+                <div className="analysis-all-show">
+                    <div className="analysis-all-show-div">
+                        <span className="analysis-all-show-icon1"></span>
+                        <ul className="analysis-all-show-ul">
+                            <li className="analysis-all-show-ul-title">当前总人口</li>
+                            <li className="analysis-all-show-ul-english">The current totle people</li>
+                            <li className="analysis-all-show-ul-number1">
+                                {/*{this.state.numOfTotlePeople}*/}
+                                <ul id="titleNumber1" className="title-number-ul">
+                                    <li><span>2</span></li>
+                                    <li><span>5</span></li>
+                                    <li><span>7</span></li>
+                                    <li><span>9</span></li>
+                                    <li><span>9</span></li>
+                                    <li><span>2</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="analysis-all-show-div">
+                        <span className="analysis-all-show-icon2"></span>
+                        <ul className="analysis-all-show-ul">
+                            <li className="analysis-all-show-ul-title">当前流动人口</li>
+                            <li className="analysis-all-show-ul-english">The current totle people</li>
+                            <li className="analysis-all-show-ul-number2">
+                                <ul id="titleNumber2" className="title-number-ul">
+                                    <li><span>1</span></li>
+                                    <li><span>4</span></li>
+                                    <li><span>8</span></li>
+                                    <li><span>9</span></li>
+                                    <li><span>6</span></li>
+                                    <li><span>2</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="analysis-all-show-div">
+                        <span className="analysis-all-show-icon3"></span>
+                        <ul className="analysis-all-show-ul">
+                            <li className="analysis-all-show-ul-title">访客总人口</li>
+                            <li className="analysis-all-show-ul-english">The current totle people</li>
+                            <li className="analysis-all-show-ul-number3">
+                                <ul id="titleNumber3" className="title-number-ul">
+                                    <li><span>3</span></li>
+                                    <li><span>5</span></li>
+                                    <li><span>4</span></li>
+                                    <li><span>9</span></li>
+                                    <li><span>2</span></li>
+                                    <li><span>3</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="analysis-all-show-div">
+                        <span className="analysis-all-show-icon4"></span>
+                        <ul className="analysis-all-show-ul">
+                            <li className="analysis-all-show-ul-title">60岁以上人口</li>
+                            <li className="analysis-all-show-ul-english">The current totle people</li>
+                            <li className="analysis-all-show-ul-number4">{this.state.numOfOldPeople}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div id="smallMap"/>
-                <Row className="right-top" >
-                    <Col span={7}>
+                <div className="chart-middle">
+                    <div className="chart-middle-left">
+                        <div className="chart-title">人口民族分类</div>
                         <div id="chart1" className="chart"></div>
-                    </Col>
-                    <Col span={9}>
+                    </div>
+                    <div className="chart-middle-right">
+                        <div className="chart-title">出入记录分析</div>
                         <div id="chart2" className="chart"></div>
-                    </Col>
-                    <Col span={7}>
-                        <div id="chart3" className="chart"></div>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
+                <div className="all-chart" >
+                    <div id="chart4" className="all-chart-c"></div>
+                </div>
+                {/*<div id="chart2" className="chart"></div>*/}
+                {/*<div id="chart3" className="chart"></div>*/}
             </div>
         );
     }

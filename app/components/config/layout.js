@@ -1,12 +1,18 @@
 import React from  "react";
-import { Redirect } from 'react-router-dom'
-import Tables from "./table"
+import { NavLink, Route, Redirect,Switch } from 'react-router-dom'
+import "./layout.css"
+import './table-css/public.css';
+import { Layout, Menu, Breadcrumb, Icon, Input, Select} from 'antd';
+import { card_manage } from "../../../config/chartConfig";
+import People from "./table"
+import Cardmanage from "./cardManager";
+import Housemanage from "./houseManager";
 
-
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-
+const Search = Input.Search;
+const InputGroup = Input.Group;
+const Option = Select.Option;
 class base extends React.Component {
  constructor(props){
      super(props);
@@ -14,6 +20,7 @@ class base extends React.Component {
         collapsed: false,
         key:1,
       };
+      this.set=["常住人口管理","流动人口管理","房东管理","访客管理","小区","楼","单元","房屋","卡管理"];
       this.onCollapse = this.onCollapse.bind(this);
       this.getData = this.getData.bind(this);
  } 
@@ -27,7 +34,7 @@ class base extends React.Component {
   }
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+        <div className="right-body-container" style={{ minHeight: '100vh' }}>
         <Sider
           collapsible
           collapsed={this.state.collapsed}
@@ -40,65 +47,70 @@ class base extends React.Component {
             mode="inline"
             theme="dark"
             inlineCollapsed={this.state.collapsed}>
-            <Menu.Item key="1">
-                <Icon type="pie-chart" />
-                <span>人口管理</span>
+             <SubMenu
+                key="sub1"
+                title={<span><Icon type="user" /><span>人口管理</span></span>}>
+                <Menu.Item key="1">
+                    <NavLink to='/config/'>
+                        <span>常住人口</span>
+                    </NavLink>
+                </Menu.Item>
+                <Menu.Item key="2">
+                    <span>流动人口</span>
+                </Menu.Item>
+                <Menu.Item key="3">
+                    <span>房东管理</span>
+                </Menu.Item>
+                <Menu.Item key="4">
+                    <span>访客管理</span>
+                </Menu.Item>
+            </SubMenu>
+            <SubMenu
+                key="sub2"
+                title={<span><Icon type="user" /><span>房屋管理</span></span>}>
+                <Menu.Item key="5" > 
+                    <span>小区</span>
+                </Menu.Item>
+                <Menu.Item key="6" >
+                    <span>楼</span>
+                </Menu.Item>
+                <Menu.Item key="7" >
+                    <span>单元</span>
+                </Menu.Item>
+                <Menu.Item key="8" >
+                    <NavLink to='/config/housemanage'>
+                        <span>房屋</span>
+                    </NavLink>
+                </Menu.Item>
+            </SubMenu>
+
+            <Menu.Item key="9"> 
+                <NavLink to='/config/cardmanage'>
+                    <Icon type="inbox" />
+                    <span>卡管理</span>
+                </NavLink>
             </Menu.Item>
-            <Menu.Item key="2" >
-                <Icon type="desktop" />
-                <span>房屋管理</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-                <Icon type="inbox" />
-                <span>卡管理</span>
-            </Menu.Item>
-            <Menu.Item key="4">
-                <Icon type="inbox" />
-                <span>警务区管理</span>
-            </Menu.Item>
-            <Menu.Item key="5">
-                <Icon type="inbox" />
-                <span>GIS资源管理</span>
-            </Menu.Item>
-            <Menu.Item key="6">
-                <Icon type="inbox" />
-                <span>门禁设备管理</span>
-            </Menu.Item>
-            <Menu.Item key="7">
-                <Icon type="inbox" />
-                <span>视频设备管理</span>
-            </Menu.Item>
-            <Menu.Item key="8">
-                <Icon type="inbox" />
-                <span>道闸设备管理</span>
-            </Menu.Item> 
-            <Menu.Item key="9">
-                <Icon type="inbox" />
-                <span>系统基础配置管理</span>
-            </Menu.Item>
-            <Menu.Item key="10">
-                <Icon type="inbox" />
-                <span>权限管理等维护功能</span>
-            </Menu.Item>
+
+        
             </Menu>
         </Sider>
-        <Layout>
-            <Header style={{ background: '#fff', padding: 0 }} />
-                <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                    <Breadcrumb.Item>{this.state.key}</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                        <Tables/>
-                    </div>
-                </Content>
-
+        <div className="right-div-body">
+            <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>基础信息管理</Breadcrumb.Item>
+                <Breadcrumb.Item>{this.set[this.state.key-1]}</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{ padding: 20, background: '#fff', minHeight: 360 }}>
+                <Switch>
+                    <Route exact path="/config" component={People}/>
+                    <Route path="/config/cardmanage" component={Cardmanage}/>
+                    <Route path="/config/housemanage" component={Housemanage}/>
+                </Switch>
+            </div> 
           <Footer style={{ textAlign: 'center' }}>
             
           </Footer>
-        </Layout>
-      </Layout>
+        </div>
+      </div>
     );
   }
 }

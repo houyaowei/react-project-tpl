@@ -1,93 +1,142 @@
-body {
-  margin: 0;
+html,body,#content{
+  height: 100%;
 }
+#content>div{
+  height: 100%;
+}
+body {
+  position: relative;
+  width: 100%;
+  min-width: 71.429em;
+  background-color: #e5eaef !important;
+  font-family: "Microsoft YaHei" ! important; 
+}
+a:link,a:visited{ text-decoration:none !important;}
+
 .inline-block {
   display: inline-block;
 }
-
-
-.login-wrap {
-  width: 290px;
-  margin-right: auto;
-  margin-left: auto;
+.title {
+  color: #000;
+  font-size: 1.285em;
 }
-
-.login-wrap h2 {
-  text-align: center;
+.content {
+  font-size: 1em;
+  color: #808080;
 }
-
-.field-box {
-  margin-bottom: 20px;
-}
-
-.field-box label,
-.field-box input {
-  box-sizing: border-box;
-  height: 30px;
-  line-height: 30px;
-  vertical-align: middle;
-}
-
-.control-label {
+.logo-style{
   display: inline-block;
-  width: 90px;
-  text-align: right;
+  margin-top: 6px;
+  background-image: url('/images/dashboard/logo.png');
+  background-repeat: no-repeat;
+  height: 42px;
+  width: 42px;
 }
-
-.field-box input {
-  width: 200px;
-}
-
-.fixed-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-}
-
-.main-layout {
-  /* 有地图操作的需要动态增加marginTop:50*/
-  /* margin-top: 50px; */
-}
-
-.home {
-  text-align: center;
-}
-
-.logo {
-  height: 80px;
-  animation: app-logo-spin infinite 20s linear;
-}
-
-@keyframes app-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.aside-nav {
-  display: inline-block;
-  float: left;
-  width: 120px;
-  margin: 0 50px 0 0;
-  padding-left: 0;
-  background-color: #fafbfc;
-}
-
-.aside-nav a {
-  display: block;
-  margin-bottom: 5px;
-  padding: 4px 0 5px;
-  color: #555;
-  text-align: center;
-  text-decoration: none;
-}
-
-.aside-nav .active {
+.logo-style + span {
+  position: relative;
+  top: -0.5em;
   color: #fff;
-  background-color: orange;
 }
 
-.aside-container {
-  float: left;
+.editable-row-operations .ant-btn-primary,.ant-btn-danger{
+  margin: 0 4px 0 4px;
+}
+
+
+.ant-layout-sider-children{
+  background-color: #2d3e50;
+  min-height: 100vh;
+}
+.ant-layout-sider-children ul{
+  background-color: #2d3e50;
+}
+.ant-layout-sider-children ul li{
+  color:#ffffff;
+  font-size: 14px;
+}
+.ant-menu-item-selected{
+  background-color: #44566f !important;
+}
+.ant-layout-sider-trigger{
+  background-color: #2d3e50 !important;
+}
+
+.ant-menu-dark,.ant-menu-inline.ant-menu-sub{
+  background-color: #2d3e50 !important;
+}
+
+
+
+
+/*antdesign表格样式*/
+.ant-breadcrumb{
+  margin:38px 0 0 44px !important;
+}
+
+.ant-table-body table{
+  padding:0 !important;
+}
+.ant-table-thead th{
+  background-color: #e7ebf6 !important;
+}
+.ant-table-thead th tr{
+  color: #000 !important;
+}
+.ant-table-tbody tr{
+  color:#666666 !important;
+}
+
+.ant-table-body table td,th{
+  text-align: left !important;
+  height: 42px;
+}
+.ant-table-row input{
+  max-width: 120px !important;
+}
+.ant-table-wrapper{
+  padding: 0 10px 0 10px !important;
+}
+/*分页符激活后子元素颜色*/
+.ant-pagination-item-link:after{
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important ;
+}
+.ant-pagination-item-active{
+  background-color: #d5def2 !important;
+  border-radius: 0 !important;
+  border: 1px solid #dfcdeb !important;
+}
+.ant-pagination-item-active a{
+  color:#5f81ce !important;
+}
+.ant-table-pagination li{
+  width: 30px;
+  height: 30px !important;
+  line-height: 30px !important;
+}
+
+/*弹窗lable文字*/
+.ant-form-item-required{
+  font-family: "SimHei" !important;
+  font-size: 14px !important;
+}
+a {
+  -webkit-tap-highlight-color:transparent !important;
+}
+/*.ant-layout-sider{*/
+  /*display: inline-block;*/
+/*}*/
+.right-body-container{
+  min-height: 100% !important;
+  display: flex;
+  display: -ms-flexbox;
+}
+.right-div-body{
+  flex-grow: 1;
+  -ms-flex:1 0 auto;
+}
+#content{
+  min-height: 768px;
+  min-width: 1345px;
 }

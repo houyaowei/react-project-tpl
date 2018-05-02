@@ -1,5 +1,127 @@
-.login-form {
-    margin-left: 33%;
-    margin-top: 30px;
-    max-width: 400px;
+
+.input-group-addon{
+    background-color: #fff !important;
+    border-right:none !important;
+    border-radius: 6px;
+    border-top: 1px solid #b5b5b5;
+    border-left: 1px solid #b5b5b5;
+    border-bottom: 1px solid #b5b5b5;
+}
+.form-control {
+    border-left: none;
+    padding: 0;
+    height: 50px;
+    color: #999;
+    border-radius: 6px;
+    border-top: 1px solid #b5b5b5;
+    border-right: 1px solid #b5b5b5;
+    border-bottom: 1px solid #b5b5b5;
+}
+.btn-primary {
+    color: #fefefe;
+    background-color: #3e7afe;
+    width: 360px;
+    height: 50px;
+    border-radius: 6px;
+}
+.form-group {
+    width: 360px;
+    margin-left: 30px;
+    margin-top: 10%;
+}
+.login {
+    display: flex;
+    flex-direction: column;
+    background: url("/images/login/bg.png");
+    background-repeat: repeat;
+    width: 100%;
+    min-width: 1345px;
+    height: 100%;
+}
+.login__logo {
+    display: inline-block;
+    background: url("/images/login/title.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* width: 25.571em; */
+    width: 30%;
+    height: 4.5em;
+    margin-top: 89px;
+    margin-left: 100px;
+}
+.login__inner{
+    width: 100%;
+}
+.login__inner_slogan{
+    display: inline-block;
+    background: url("/images/login/slogon.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 25%;
+    height: 30.286em;
+    margin-top: 184px;
+    margin-left: 25%;
+}
+.login__inner__right{
+    display: inline-block;
+    position: relative;
+    float: right;
+    width:23%;
+    height: 450px;
+    background-color: #fff;
+    margin-top: 175px;
+    margin-right: 18%;
+}
+.user-icon {
+    display: inline-block;
+    background: url("/images/login/user.png");
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 17px;
+}
+.pass-icon {
+    display: inline-block;
+    background: url("/images/login/pass.png");
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 17px;
+}
+.login__inner_user{
+    display: inline-block;
+    margin-top: 12%;
+    color: #3b8ce0;
+    font-size: 22px;
+    width:100%;
+    text-align: center;
+}
+.login-inner__rem {
+    display: inline-block;
+    background: url("/images/login/checked.png");
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 22px;
+}
+.login-inner__other, .login-inner__btn{
+    margin-top: 23px;
+    margin-left: 30px;
+}
+.login-inner__btn {
+
+}
+.error-msg{
+    position: absolute;
+    left:30px;
+    margin-top: 24%;
+    color: red;
+}
+@media only screen and (max-width: 1366px) {
+    .login__inner__right{
+        height:400px;
+    }
+    .login__inner_slogan{
+        margin-top: 134px;
+    }
+    .login__inner__right{
+        margin-top: 115px;
+    }
 }

@@ -1,0 +1,35 @@
+.nameinput{
+    width:12%;
+    height: 36px;
+}
+.agelable{
+    margin-left: 20px;
+}
+.ageinput{
+    width: 12%;
+    height: 36px;
+}
+
+.addpeople{
+    display: inline-block;
+    width: 80px;
+    height: 36px;
+    color: #385ab2;
+    line-height: 36px;
+    text-align: center;
+    background-color: #e8edf8;
+    border: 1px solid #bfcdeb;
+    float: right;
+}
+.abutton{
+    display: inline-block;
+    width: 80px;
+    height: 36px;
+    color: #385ab2;
+    line-height: 36px;
+    text-align: center;
+    background-color: #e8edf8;
+    border: 1px solid #bfcdeb;
+    margin-left: 20px;
+    text-decoration: none;
+}

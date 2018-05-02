@@ -1,0 +1,308 @@
+.header-top{
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+    background-color: #385ab2;
+    min-width: 1300px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    -webkit-box-pack: space-between;
+    -moz-box-pack: space-between;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.header-logo{
+   margin-left: 20px;
+   width: 364px;
+   height: 100%;
+   display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+
+   -webkit-flex-direction: row;
+   -moz-flex-direction: row;
+   -ms-flex-direction: row;
+   -o-flex-direction: row;
+   flex-direction: row;
+
+   -webkit-box-pack: space-around;
+   -moz-box-pack: space-around;
+   -ms-flex-pack: justify;
+   justify-content: space-around;
+
+   align-items: center;
+   -webkit-align-items:center;
+   -moz-box-align: center;
+   -ms-flex-align: center;
+}
+.header-logo img{
+    width: 136px;
+    height: 32px;
+}
+.logo-title{
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+    color: white;
+}
+.navul{
+    width: 50%;
+    height: 70px;
+}
+.search-content{
+    position: relative;
+    right: -50px;
+    width: 250px;
+    height: 70px;
+    padding-top: 12.5px;
+}
+.dropmeau{
+    width: 150px;
+    height: 70px;
+}
+.header-top-ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+     flex-direction: row;
+   -webkit-flex-direction: row;
+   -moz-flex-direction: row;
+   -ms-flex-direction: row;
+   -o-flex-direction: row;
+  
+   align-items: center;
+   -webkit-align-items:center;
+   -moz-box-align: center;
+   -ms-flex-align: center;
+
+   -webkit-box-pack: space-between;
+   -moz-box-pack: space-between;
+   -ms-flex-pack: justify;
+   justify-content: space-between;
+    max-width: 700px;
+    /*margin-left: 160px;*/
+}
+.header-top-ul li{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width:110px;
+    height: 70px;
+    line-height: 70px;
+    list-style: none;
+    text-align: center;
+    color: white;
+    float: left;
+}
+.header-top-ul li:hover{
+    background-color: rgb(39,71,154);
+}
+.header-top-ul li a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: white;
+    line-height: 70px;
+    text-decoration: none;
+}
+.search-div{
+    height: 45px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+    flex-direction: row;
+   -webkit-flex-direction: row;
+   -moz-flex-direction: row;
+   -ms-flex-direction: row;
+   -o-flex-direction: row;
+
+    align-items: center;
+   -webkit-align-items:center;
+   -moz-box-align: center;
+   -ms-flex-align: center;
+    background-color:rgba(255,255,255,0.16);
+    border-radius: 50px;
+    float:right;
+}
+.inputicon{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    display: -ms-flexbox;
+    flex-direction: row;
+   -webkit-flex-direction: row;
+   -moz-flex-direction: row;
+   -ms-flex-direction: row;
+   -o-flex-direction: row;
+    align-items: center;
+   -webkit-align-items:center;
+   -moz-box-align: center;
+   -ms-flex-align: center;
+
+   -webkit-box-pack: center;
+   -moz-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+    cursor: pointer;
+}
+.input-content{
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+.input-content input{
+    width: 0;
+    height: 100%;
+    color: white;
+    border: 0;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+.dropmeau ol{
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+}
+.dropmeau ol>li{
+    list-style: none;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    color: white;
+}
+.dropmeau ol>li:hover{
+    background-color: rgb(39,71,154);
+    cursor: pointer;
+}
+.dropmeau :hover .meaulist{
+    height: 200px;
+}
+.meaulist{
+    height: 0;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2000;
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(56,90,178);
+}
+.meaulist li{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+.meaulist li:hover{
+    background-color: rgb(39,71,154);
+}
+
+
+/*提示框*/
+.showword{
+    width:100%;
+    height: 0;
+    background-color: #385ab2;
+    margin-top: 57px;
+    transition: all 0.3s ease-in-out;
+    z-index: 2100;
+    border-top : 0;
+}
+
+.search-words{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+.search-words li{
+    font-size: 14px;
+    list-style: none;
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+    padding: 0 5px 0 20px;
+    cursor: pointer;
+    color: #ffffff;
+} 
+.search-words li:hover{
+    color:#000000;
+    background-color: #d2dff3;
+}
+.dropli{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    align-items: center;
+   -webkit-align-items:center;
+   -moz-box-align: center;
+   -ms-flex-align: center;
+
+   -webkit-box-pack: center;
+   -moz-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+}
+.header-manager{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    background-image: url('/images/dashboard/manage.png');
+}
+.oper-icon {
+    margin-left: 4px;
+    display: inline-block;
+    width: 15px;
+    height: 9px;
+    background-image: url('/images/dashboard/arr.png');
+}
+/*.search-content{*/
+    /*display: none;*/
+/*}*/
+@media only screen and (max-width: 1900px) {
+    .search-content{
+        display: none;
+    }
+}

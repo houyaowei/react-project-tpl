@@ -1,8 +1,7 @@
 import React from "react";
-var echarts = require('echarts');
-import { Row,Col,Select } from 'antd'
+import { Button ,Icon} from 'antd';
+import * as analysisDataConfig from "../../../config/analysisDataConfig";
 
-const Option = Select.Option;
 class AnalysisPage5 extends React.Component {
     constructor(props){
         super(props);
@@ -17,215 +16,81 @@ class AnalysisPage5 extends React.Component {
     }
 
     componentDidUpdate(){
-        var myChart1 = echarts.init(document.getElementById('chart1'));
-        var myChart2 = echarts.init(document.getElementById('chart2'));
-        var myChart3 = echarts.init(document.getElementById('chart3'));
-        var myChart4 = echarts.init(document.getElementById('chart4'));
-        var option1 = [{
-            title: {
-                text: `游客数量同比${this.state.title}分析`
-            },
-            tooltip: {},
-            legend: {
-                data:['默认','往期']
-            },
-            xAxis: {
-                data: ["人口"]
-            },
-            yAxis: {},
-            series: [{
-                name: '默认',
-                type: 'bar',
-                data: [21]
-            },{
-                name: '往期',
-                type: 'bar',
-                data: [14]
-            }]
-        },{
-            title: {
-                text: `游客数量环比${this.state.title}分析`
-            },
-            tooltip: {},
-            legend: {
-                data:['默认','周边','周边2']
-            },
-            xAxis: {
-                data: ["人口"]
-            },
-            yAxis: {},
-            series: [{
-                name: '默认',
-                type: 'bar',
-                data: [15]
-            },{
-                name: '周边',
-                type: 'bar',
-                data: [17]
-            },{
-                name: '周边2',
-                type: 'bar',
-                data: [21]
-            }]
-        },{
-            title: {
-                text: `游客数量${this.state.title}波动分析`
-            },
-            tooltip: {},
-            legend: {
-            },
-            xAxis: {
-                type: 'category',
-                data: ['5', '10', '15', '20', '25', '30']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                data: [560, 720, 893, 934, 1290, 1270, 1320],
-                type: 'line'
-            }]
-        },{
-            title: {
-                text: `游客数量${this.state.title}top5分析`
-            },
-            tooltip: {},
-            legend: {
-            },
-            xAxis: {
-                type: 'value',
-            },
-            yAxis: {
-                type: 'category',
-                data: ['top5','top4','top3','top2','top1']
-            },
-            series: [{
-                data: [536, 650, 710, 1300, 1580],
-                type: 'bar'
-            }]
-        }];
-        myChart1.setOption(option1[0]);
-        myChart2.setOption(option1[1]);
-        myChart3.setOption(option1[2]);
-        myChart4.setOption(option1[3]);
+
     }
     componentDidMount(){
         var myChart1 = echarts.init(document.getElementById('chart1'));
-        var myChart2 = echarts.init(document.getElementById('chart2'));
-        var myChart3 = echarts.init(document.getElementById('chart3'));
-        var myChart4 = echarts.init(document.getElementById('chart4'));
-        var option = [{
-            title: {
-                text: `游客数量同比${this.state.title}分析`
-            },
-            tooltip: {},
-            legend: {
-                data:['默认','往期']
-            },
-            xAxis: {
-                data: ["人口"]
-            },
-            yAxis: {},
-            series: [{
-                name: '默认',
-                type: 'bar',
-                data: [20]
-            },{
-                name: '往期',
-                type: 'bar',
-                data: [16]
-            }]
-        },{
-            title: {
-                text: `游客数量环比${this.state.title}分析`
-            },
-            tooltip: {},
-            legend: {
-                data:['默认','周边','周边2']
-            },
-            xAxis: {
-                data: ["人口"]
-            },
-            yAxis: {},
-            series: [{
-                name: '默认',
-                type: 'bar',
-                data: [20]
-            },{
-                name: '周边',
-                type: 'bar',
-                data: [25]
-            },{
-                name: '周边2',
-                type: 'bar',
-                data: [16]
-            }]
-        },{
-            title: {
-                text: `游客数量${this.state.title}波动分析`
-            },
-            tooltip: {},
-            legend: {
-            },
-            xAxis: {
-                type: 'category',
-                data: ['5', '10', '15', '20', '25', '30']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line'
-            }]
-        },{
-            title: {
-                text: `游客数量${this.state.title}top5分析`
-            },
-            tooltip: {},
-            legend: {
-            },
-            xAxis: {
-                type: 'value',
-            },
-            yAxis: {
-                type: 'category',
-                data: ['top5','top4','top3','top2','top1']
-            },
-            series: [{
-                data: [820, 840, 901, 934, 1290],
-                type: 'bar'
-            }]
-        }];
-        myChart1.setOption(option[0]);
-        myChart2.setOption(option[1]);
-        myChart3.setOption(option[2]);
-        myChart4.setOption(option[3]);
+        myChart1.setOption(analysisDataConfig.analysisVisitorOption);
     }
     render(){
         return (
             <div>
-                <Select defaultValue="一个月" style={{ width: 120 }} onChange={this.handleChange}>
-                    <Option value="一个月">一个月</Option>
-                    <Option value="三个月">三个月</Option>
-                    <Option value="一年">一年</Option>
-                </Select>
-                <Row>
-                    <Col span={12}>
-                        <div className="big-chart" id="chart1"></div>
-                    </Col>
-                    <Col span={12}>
-                        <div className="big-chart" id="chart2"></div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col span={12}>
-                        <div className="big-chart" id="chart3"></div>
-                    </Col>
-                    <Col span={12}>
-                        <div className="big-chart" id="chart4"></div>
-                    </Col>
-                </Row>
+                {/*<div className="analysis-top-button" style={{marginTop:5,marginLeft:20}}>*/}
+                    {/*<Button ghost>一个月</Button>*/}
+                    {/*<Button ghost>三个月</Button>*/}
+                    {/*<Button ghost>一年</Button>*/}
+                {/*</div>*/}
+                <div>
+                    <div className="chart-title" style={{marginTop:"15px"}}>游客动向总览</div>
+                    <div id="chart1" className="chart-chinamap"></div>
+                    <div className="analysis-visit-right">
+                        <div className="chart-container-topright1">
+                            <div className="chart-title"> 游客目的城市人口排名</div>
+                            <ul className="chart-container-topright-ul1">
+                                <li className="chart-container-topright-ul1-top3">1</li>
+                                <li className="chart-container-topright-ul1-top3">2</li>
+                                <li className="chart-container-topright-ul1-top3">3</li>
+                                <li>4</li>
+                                <li>5</li>
+                                <li>6</li>
+                                <li>7</li>
+                                <li>8</li>
+                                <li>9</li>
+                                <li>10</li>
+                            </ul>
+                            <ul className="chart-container-topright-ul2">
+                                <li>上海市<span style={{float:"right"}}>286543<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>西安市<span style={{float:"right"}}>262845<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>天津市<span style={{float:"right"}}>214467<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>成都市<span style={{float:"right"}}>143536<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>太原市<span style={{float:"right"}}>121532<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>拉萨市<span style={{float:"right"}}>110985<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>齐齐哈尔市<span style={{float:"right"}}>109955<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>乌鲁木齐市<span style={{float:"right"}}>108265<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>广州市<span style={{float:"right"}}>106565<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>香港市<span style={{float:"right"}}>103915<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                            </ul>
+                        </div>
+                        <div className="chart-container-topright1" style={{marginTop:"60px"}}>
+                            <div className="chart-title"> 游客来源地人数排名</div>
+                            <ul className="chart-container-topright-ul1">
+                                <li className="chart-container-topright-ul1-top3">1</li>
+                                <li className="chart-container-topright-ul1-top3">2</li>
+                                <li className="chart-container-topright-ul1-top3">3</li>
+                                <li>4</li>
+                                <li>5</li>
+                                <li>6</li>
+                                <li>7</li>
+                                <li>8</li>
+                                <li>9</li>
+                                <li>10</li>
+                            </ul>
+                            <ul className="chart-container-topright-ul2">
+                                <li>深圳市<span style={{float:"right"}}>98324<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>北京市<span style={{float:"right"}}>94321<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>重庆市<span style={{float:"right"}}>86334<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>西安市<span style={{float:"right"}}>81354<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>三亚市<span style={{float:"right"}}>74345<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>哈尔滨市<span style={{float:"right"}}>76532<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>拉萨市<span style={{float:"right"}}>56174<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>乌鲁木齐市<span style={{float:"right"}}>54234<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                                <li>桂林市<span style={{float:"right"}}>49823<Icon type="arrow-down" style={{color:"green"}}/></span></li>
+                                <li>长沙市<span style={{float:"right"}}>35742<Icon type="arrow-up" style={{color:"red"}}/></span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         );
     }
