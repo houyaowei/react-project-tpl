@@ -1,12 +1,10 @@
-# pasq-project
+# react-project-tpl
 ### install nodejs
 > https://nodejs.org/en/
 
 ### install yarn
 > https://yarnpkg.com/en/docs/install
 
-### global install webpack
-> npm install -g webpack
 
 ### install project node packages
 * install by yarn or npm 
