@@ -19,61 +19,88 @@ module.exports = {
     },
 
     plugins: [
-        new webpack
-            .optimize
-            .OccurrenceOrderPlugin(),
+       new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        // new webpack.DefinePlugin({     'process.env.NODE_ENV': JSON.stringify('dev'),
-        //     __DEV__: true }), new CleanWebpackPlugin(['dist']),
-        new HTMLWebpachPlugin({title: "hc-portal-fe", template: "./app/assets/index.html", files: {
-                //  css : ["./app/assets/css/bootstrap.min.css"]
-            }}),
-        new webpack
-            .optimize
-            .CommonsChunkPlugin({name: 'duplication'}),
+        // new CleanWebpackPlugin(['dist']),
+        new HTMLWebpachPlugin({
+          title: "hc-portal-fe",
+          template: "./app/assets/index.html",
+          files: {
+            //  css : ["./app/assets/css/bootstrap.min.css"]
+          }
+        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //   name: "duplication"
+        // }),
         new CopyWebpackPlugin([
-            {
-                from: 'app/assets/images',
-                to: 'images'
-            }, {
-                from: 'app/assets/index.html',
-                to: 'index.html'
-            }, {
-                from: 'app/assets/css',
-                to: 'css'
-            }, {
-                from: 'app/assets/lib',
-                to: 'lib'
-            }
+          {
+            from: "app/assets/images",
+            to: "images"
+          },
+          {
+            from: "app/assets/index.html",
+            to: "index.html"
+          },
+          {
+            from: "app/assets/css",
+            to: "css"
+          },
+          {
+            from: "app/assets/lib",
+            to: "lib"
+          }
         ]),
-        new ExtractTextPlugin("styles.css")
+        new MiniCssExtractPlugin({
+          filename: 'styles.css',
+        })
     ],
+    optimization: {
+        splitChunks: {
+          cacheGroups: {
+            vendor: {
+              chunks: "initial",
+              test: path.resolve(__dirname, "node_modules"),
+              name: "duplication",
+              enforce: true
+            }
+          }
+        }
+    },
     module: {
         rules: [
-            {
-                test: /\.(png|jpg|svg|jpeg|mp4)$/,
-                use: ['file-loader']
-            }, {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})
-            }, {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
-                options: {
-                    presets: ['react', "es2015", "stage-0"]
-                }
-            }, {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
-                query: {
-                    presets: ['react', "es2015"]
-                }
-            }, {
-                test: /\.(otf|ttf|eot|woff|woff2)$/i,
-                loader: 'url?name=[path][name].[ext]'
+          {
+            test: /\.(png|jpg|svg|jpeg|mp4)$/,
+            use: ["file-loader"]
+          },
+           {
+            test: /\.(scss|css)$/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              // 'postcss-loader',
+              // 'sass-loader',
+            ]
+          },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: "babel-loader",
+            options: {
+              presets: ["react", "es2015", "stage-0"]
             }
+          },
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: "babel-loader",
+            query: {
+              presets: ["react", "es2015"]
+            }
+          },
+          {
+            test: /\.(otf|ttf|eot|woff|woff2)$/i,
+            loader: "url?name=[path][name].[ext]"
+          }
         ]
     }
 }

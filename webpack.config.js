@@ -1,8 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
 const HTMLWebpachPlugin = require("html-webpack-plugin");
-var CopyWebpackPlugin = require("copy-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
@@ -20,16 +20,12 @@ module.exports = {
   devServer: {
     contentBase: __dirname + "/dist",
     compress: true,
-    port: 9090
+    port: 9011
   },
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new webpack.DefinePlugin({
-    //     'process.env.NODE_ENV': JSON.stringify('dev'),
-    //     __DEV__: true
-    // }),
     // new CleanWebpackPlugin(['dist']),
     new HTMLWebpachPlugin({
       title: "hc-portal-fe",
@@ -38,9 +34,9 @@ module.exports = {
         //  css : ["./app/assets/css/bootstrap.min.css"]
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "duplication"
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "duplication"
+    // }),
     new CopyWebpackPlugin([
       {
         from: "app/assets/images",
@@ -59,20 +55,36 @@ module.exports = {
         to: "lib"
       }
     ]),
-    new ExtractTextPlugin("styles.css")
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: "initial",
+          test: path.resolve(__dirname, "node_modules"),
+          name: "duplication",
+          enforce: true
+        }
+      }
+    }
+  },
   module: {
     rules: [
       {
         test: /\.(png|jpg|svg|jpeg|mp4)$/,
         use: ["file-loader"]
       },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+       {
+        test: /\.(scss|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          // 'postcss-loader',
+          // 'sass-loader',
+        ]
       },
       {
         test: /\.js$/,
