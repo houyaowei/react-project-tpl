@@ -1,0 +1,11 @@
+{
+  "login": {
+  	"loginBtn":"登录",
+  	"remember": "记住密码"
+  },
+  "main" : {
+  	"topBar" : {
+
+  	}
+  }
+}

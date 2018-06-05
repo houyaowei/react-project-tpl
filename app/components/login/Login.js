@@ -2,21 +2,41 @@ import React from  "react";
 import ReactDOM from "react-dom";
 import {Redirect } from 'react-router-dom'
 import {Button,FormControl,FormGroup,ControlLabel,InputGroup} from "react-bootstrap";
+import intl from 'react-intl-universal';
+import "whatwg-fetch";
+import _ from "lodash";
 import "./login.css";
+import {Select} from "antd";
+const Option = Select.Option;
 
+const SUPPOER_LOCALES = [
+  {
+    name: "English",
+    value: "en-US"
+  },
+  {
+    name: "简体中文",
+    value: "zh-CN"
+  }
+];
 class Login extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             name : "",
             pass : "",
-            errMsg:""
+            errMsg:"",
+            initDone: false,
+            defalutLanguage: "0" //0:中文 1:English
         };
         this.login = this.login.bind(this);
     }
     shouldComponentUpdate(nextProps, nextState){
         console.log(nextProps + ",," + nextState);
         return true;
+    }
+    componentDidMount(){
+        this.loadLocales();
     }
     componentDidUpdate(){
         // console.log(this.props.Login.get("loginStatus"));
@@ -26,6 +46,32 @@ class Login extends React.Component {
         //     localStorage.clear();
         //     this.props.history.push('/login');
         // }
+    }
+
+    loadLocales() {
+        let currentLocale = intl.determineLocale({
+          urlLocaleKey: "lang",
+          cookieLocaleKey: "lang"
+        });
+        if (!_.find(SUPPOER_LOCALES, { value: currentLocale })) {
+          currentLocale = "en-US";
+        }
+
+        fetch(`locales/${currentLocale}.json`)
+          .then(res => {
+            return res.json()
+          })
+          .then((data) => {
+            console.log(data);
+            intl.init({
+              currentLocale,
+              locales: {
+                [currentLocale]: data
+              }
+            });
+            // After loading CLDR locale data, start to render
+            this.setState({ initDone: true });
+          });
     }
     login(){
         var userName = ReactDOM.findDOMNode(this.refs.userName).value;
@@ -43,12 +89,21 @@ class Login extends React.Component {
             })
         }
     }
+    handleChange(value){
+        location.search = `?lang=${value}`;
+    }
     render(){
         return (
             <div className="login" >
                 <span className="login__logo"></span>
                 <div className="login__inner">
                     <div className="login__inner_slogan">
+                    </div>
+                    <div className="s_l">
+                        <Select defaultValue="zh-CN" style={{ width: 120 }} onChange={this.handleChange}>
+                          <Option value="zh-CN">中文</Option>
+                          <Option value="en-US">English</Option>
+                        </Select>
                     </div>
                     <div className="login__inner__right">
                         {this.state.errMsg?<span className="error-msg">{this.state.errMsg}</span>:null}
@@ -67,10 +122,10 @@ class Login extends React.Component {
                                 </InputGroup>
                             </FormGroup>
                             <div className="login-inner__other">
-                                <span className="login-inner__rem"></span><span>记住密码</span>
+                                <span className="login-inner__rem"></span><span>{intl.get('login.remember')}</span>
                             </div>
                             <div className="login-inner__btn">
-                                <Button style={{width:"91%"}} bsStyle="primary" type="button" onClick={this.login}>登录</Button>
+                                <Button style={{width:"91%"}} bsStyle="primary" type="button" onClick={this.login}>{intl.get('login.loginBtn')}</Button>
                             </div>
                         </form>
                     </div>
