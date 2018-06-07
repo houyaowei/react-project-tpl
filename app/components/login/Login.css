@@ -114,6 +114,11 @@
     margin-top: 24%;
     color: red;
 }
+.s_l {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
 @media only screen and (max-width: 1366px) {
     .login__inner__right{
         height:400px;
