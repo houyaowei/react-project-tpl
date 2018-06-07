@@ -29,7 +29,6 @@ import People from "../components/config/table";
 import Cardmanage from "../components/config/cardManager";
 import Housemanage from "../components/config/houseManager";
 
-import BigScreen from "../components/bigScreen/Index";
 //global router config
 const routesConfig = [
     { 
@@ -104,10 +103,6 @@ const routesConfig = [
     {
         path:'/search',
         component: SearchPage
-    },
-    {
-      path:"/bs",
-      component : BigScreen
     }
 ]
 
