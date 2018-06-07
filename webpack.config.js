@@ -53,6 +53,10 @@ module.exports = {
       {
         from: "app/assets/lib",
         to: "lib"
+      },
+      {
+        from: "app/assets/locales",
+        to: "locales"
       }
     ]),
     new MiniCssExtractPlugin({

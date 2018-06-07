@@ -28,6 +28,8 @@ import SearchPage from "../components/searchpage/SearchPage";
 import People from "../components/config/table";
 import Cardmanage from "../components/config/cardManager";
 import Housemanage from "../components/config/houseManager";
+
+import BigScreen from "../components/bigScreen/Index";
 //global router config
 const routesConfig = [
     { 
@@ -102,6 +104,10 @@ const routesConfig = [
     {
         path:'/search',
         component: SearchPage
+    },
+    {
+      path:"/bs",
+      component : BigScreen
     }
 ]
 
@@ -109,9 +115,7 @@ export default () => (
     <Router history={history}>
       <Switch>
         <Route path='/login' exact component={LoginContainer} />
-        <Route path="/" exact component={LoginContainer}>
-          ＜IndexRedirect to="/login" />
-        </Route>
+        <Route path="/" exact component={LoginContainer} />
         <Container>
           <Switch>
             {routesConfig.map((route, i) => (
