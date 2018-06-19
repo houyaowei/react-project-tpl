@@ -29,3 +29,9 @@
 
 [ES6](http://es6.ruanyifeng.com/)
 
+
+### fix error
+
+* error Msg:The engine "node" is incompatible with this module. Expected version ">=4 <=9".
+
+> resolve :  yarn config set ignore-engines true
