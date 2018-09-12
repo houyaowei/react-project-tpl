@@ -29,6 +29,14 @@
     margin-left: 30px;
     margin-top: 10%;
 }
+
+.logo {
+    position: absolute;
+    top: 30%;
+    left: 60px;
+    font-size: 50px;
+    color: #fff;
+}
 .login {
     display: flex;
     flex-direction: column;
@@ -113,11 +121,6 @@
     left:30px;
     margin-top: 24%;
     color: red;
-}
-.s_l {
-    position: absolute;
-    top: 20px;
-    right: 20px;
 }
 @media only screen and (max-width: 1366px) {
     .login__inner__right{

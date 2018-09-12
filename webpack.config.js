@@ -3,7 +3,8 @@ const webpack = require("webpack");
 const HTMLWebpachPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+// const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   resolve: {
@@ -20,12 +21,30 @@ module.exports = {
   devServer: {
     contentBase: __dirname + "/dist",
     compress: true,
-    port: 9011
+    port: 8090,
+    proxy: {
+      "/user": "http://192.168.100.33:8080",
+      "/webdeviceinfo": "http://192.168.100.197:8099",
+      "/webupgradehistory": "http://192.168.100.197:8099",
+      "/dictionary": "http://192.168.10.46:9007",
+      "/pjm": "http://192.168.100.23:8200",
+      "/dpspjm": "http://192.168.100.23:8200",
+      "/build": "http://192.168.100.21:9010",
+      // "/build": "http://192.168.10.209:9010", //强哥
+      // "/build": "http://192.168.10.3:9010", //李斌
+      // "/system": "http://192.168.100.23:9001",
+      "/system": "http://192.168.10.6:9001",
+
+      // "/system": "http://192.168.10.207:9001", //杨鹏
+      "/deploy": "http://192.168.10.207:9011", //杨鹏
+      "/code": "http://192.168.100.23:8200"
+    }
   },
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new MonacoWebpackPlugin(),
     // new CleanWebpackPlugin(['dist']),
     new HTMLWebpachPlugin({
       title: "hc-portal-fe",
@@ -53,15 +72,11 @@ module.exports = {
       {
         from: "app/assets/lib",
         to: "lib"
-      },
-      {
-        from: "app/assets/locales",
-        to: "locales"
       }
     ]),
     new MiniCssExtractPlugin({
-      filename: 'styles.css',
-    }),
+      filename: "styles.css"
+    })
   ],
   optimization: {
     splitChunks: {
@@ -81,11 +96,11 @@ module.exports = {
         test: /\.(png|jpg|svg|jpeg|mp4)$/,
         use: ["file-loader"]
       },
-       {
+      {
         test: /\.(scss|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          "css-loader"
           // 'postcss-loader',
           // 'sass-loader',
         ]

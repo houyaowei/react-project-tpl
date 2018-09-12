@@ -1,10 +1,12 @@
-# react-project-tpl
+# pasq-project
 ### install nodejs
 > https://nodejs.org/en/
 
 ### install yarn
 > https://yarnpkg.com/en/docs/install
 
+### global install webpack
+> npm install -g webpack
 
 ### install project node packages
 * install by yarn or npm 
@@ -29,9 +31,3 @@
 
 [ES6](http://es6.ruanyifeng.com/)
 
-
-### fix error
-
-* error Msg:The engine "node" is incompatible with this module. Expected version ">=4 <=9".
-
-> resolve :  yarn config set ignore-engines true
