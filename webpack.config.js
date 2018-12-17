@@ -3,12 +3,13 @@ const webpack = require("webpack");
 const HTMLWebpachPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 // const CleanWebpackPlugin = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".json"]
+    extensions: [".ts", ".js"]
   },
   devtool: "cheap-module-eval-source-map",
   entry: [path.resolve(__dirname, "app/index.js")],
@@ -21,27 +22,28 @@ module.exports = {
   devServer: {
     contentBase: __dirname + "/dist",
     compress: true,
-    port: 8090,
-    proxy: {
-    
-    }
+    port: 9035,
+    proxy: [
+      {
+        context: ["/user", "/webuser"],
+        target: "http://localhost:8081"
+      }
+    ]
   },
-
   plugins: [
+    new BundleAnalyzerPlugin({
+      statsFilename: "../analysis/stats.json",
+      analyzerMode: "disable",
+      generateStatsFile: true,
+      statsOptions: { source: false }
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new MonacoWebpackPlugin(),
     // new CleanWebpackPlugin(['dist']),
     new HTMLWebpachPlugin({
       title: "hc-portal-fe",
-      template: "./app/assets/index.html",
-      files: {
-        //  css : ["./app/assets/css/bootstrap.min.css"]
-      }
+      template: "./app/assets/index.html"
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: "duplication"
-    // }),
     new CopyWebpackPlugin([
       {
         from: "app/assets/images",
@@ -58,10 +60,14 @@ module.exports = {
       {
         from: "app/assets/lib",
         to: "lib"
+      },
+      {
+        from: "app/assets/locales",
+        to: "locales"
       }
     ]),
     new MiniCssExtractPlugin({
-      filename: "styles.css"
+      filename: "styles.[hash].css"
     })
   ],
   optimization: {
@@ -83,16 +89,16 @@ module.exports = {
         use: ["file-loader"]
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader"
+          "css-loader",
           // 'postcss-loader',
-          // 'sass-loader',
+          "sass-loader"
         ]
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
@@ -100,12 +106,9 @@ module.exports = {
         }
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
-        query: {
-          presets: ["react", "es2015"]
-        }
+        use: ["babel-loader", "eslint-loader"]
       },
       {
         test: /\.(otf|ttf|eot|woff|woff2)$/i,

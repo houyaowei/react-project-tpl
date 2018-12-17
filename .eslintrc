@@ -1,0 +1,57 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "plugins": ["react"],
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true,
+        "es6": true
+    }
+  },
+  "rules": {
+    "no-unused-vars": 0,
+    "max-len": [1, 80, 2, {"ignoreComments": true}],
+    "react/jsx-uses-vars": "error",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/sort-comp" : 0,
+    "react/prop-types" : 0,
+    "react/no-unused-state" : 0,
+    "linebreak-style": 0,
+    "operator-linebreak": ["error", "after",{ "overrides": { "?": "ignore", ":": "ignore", "+": "ignore" } }],
+    "arrow-parens" : 0,
+    "quote-props": 0,
+    "comma-dangle": [1, "never"],
+    "arrow-body-style": 0,
+    "prefer-destructuring" : 0,
+    "implicit-arrow-linebreak" : 0,
+    "no-confusing-arrow": 0,
+    "no-else-return": 0,
+    "no-useless-escape" : 0,
+    "object-curly-newline": 0,
+    "consistent-return" : 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/interactive-supports-focus" : 0,
+    "jsx-a11y/click-events-have-key-events" : 0,
+    "jsx-a11y/anchor-is-valid" :0,
+    "jsx-a11y/label-has-associated-control" : 0,
+    "react/jsx-one-expression-per-line" : 0,
+    "jsx-a11y/no-noninteractive-element-interactions" : 0,
+    "jsx-a11y/label-has-for" : 0,
+    "no-plusplus" : 0,
+    "no-nested-ternary": 0,
+    "no-param-reassign": 0,
+    "no-useless-return" : 0,
+    "no-restricted-syntax": 0,
+    "array-callback-return": 0,
+    "import/prefer-default-export" : 0,
+    "class-methods-use-this": 0,
+    "func-names": 0,
+    "space-before-function-paren":0
+  }
+}

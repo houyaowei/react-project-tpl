@@ -2,29 +2,26 @@ const path = require("path");
 const webpack = require("webpack");
 const HTMLWebpachPlugin = require("html-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".json"]
+    extensions: [".ts", ".js"]
   },
   devtool: "cheap-module-eval-source-map",
   entry: ["./app/index.js"],
 
   output: {
     path: path.join(__dirname, "dist"),
-    publicPath: "/",
+    publicPath: "/iotui/",
     filename: "[name].bundle.js"
   },
 
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new MonacoWebpackPlugin(),
     new CleanWebpackPlugin(["dist"]),
     new UglifyJsPlugin({
       test: /\.js($|\?)/i,
@@ -40,14 +37,9 @@ module.exports = {
     }),
     new HTMLWebpachPlugin({
       title: "hc-portal-fe",
-      template: "./app/assets/index.html",
-      files: {
-        //  css : ["./app/assets/css/bootstrap.min.css"]
-      }
+      template: "./app/assets/index_prod.html"
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: "duplication"
-    // }),
+
     new CopyWebpackPlugin([
       {
         from: "app/assets/images",
@@ -64,10 +56,14 @@ module.exports = {
       {
         from: "app/assets/lib",
         to: "lib"
+      },
+      {
+        from: "app/assets/locales",
+        to: "locales"
       }
     ]),
     new MiniCssExtractPlugin({
-      filename: "styles.css"
+      filename: "styles.[hash].css"
     })
   ],
   optimization: {
@@ -89,12 +85,12 @@ module.exports = {
         use: ["file-loader"]
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader"
+          "css-loader",
           // 'postcss-loader',
-          // 'sass-loader',
+          "sass-loader"
         ]
       },
       {
