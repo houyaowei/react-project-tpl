@@ -1,8 +1,8 @@
 .header-top{
     width: 100%;
-    height: 70px;
+    height: 48px;
     z-index: 1000;
-    background-color: #385ab2;
+    background-color: #ffffff;
     min-width: 1300px;
     display: -webkit-box;
     display: -moz-box;
@@ -27,10 +27,12 @@
     justify-content: space-between;
 }
 .header-logo{
-   margin-left: 20px;
-   width: 364px;
-   height: 100%;
-   display: -webkit-box;
+    /* margin-left: 52px; */
+    width: 200px;
+    height: 100%;
+    background-color: #212943;
+    padding: 0px 28px;
+    display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -o-flex;
@@ -52,9 +54,15 @@
    -moz-box-align: center;
    -ms-flex-align: center;
 }
+.header-right{
+    width: calc(100% - 200px);
+    height: 48px;
+    border-bottom: 1px solid #d5deea;
+    box-sizing: border-box;
+}
 .header-logo img{
-    width: 136px;
-    height: 32px;
+    width: 141px;
+    height: 21px;
 }
 .logo-title{
     position: relative;
@@ -64,7 +72,7 @@
 }
 .navul{
     width: 50%;
-    height: 70px;
+    height: 48px;
 }
 .search-content{
     position: relative;
@@ -74,8 +82,9 @@
     padding-top: 12.5px;
 }
 .dropmeau{
-    width: 150px;
-    height: 70px;
+    width: 117px;
+    height: 48px;
+    float: right;
 }
 .header-top-ul{
     margin: 0;
@@ -98,10 +107,10 @@
    -moz-box-align: center;
    -ms-flex-align: center;
 
-   -webkit-box-pack: space-between;
-   -moz-box-pack: space-between;
-   -ms-flex-pack: justify;
-   justify-content: space-between;
+   -webkit-box-pack: left;
+   -moz-box-pack: left;
+   -ms-flex-pack: left;
+   justify-content:left;
     max-width: 700px;
     /*margin-left: 160px;*/
 }
@@ -110,8 +119,8 @@
     padding: 0;
     border: 0;
     min-width:110px;
-    height: 70px;
-    line-height: 70px;
+    height: 48px;
+    line-height: 48px;
     list-style: none;
     text-align: center;
     color: white;
@@ -125,7 +134,7 @@
     width: 100%;
     height: 100%;
     color: white;
-    line-height: 70px;
+    line-height: 48px;
     text-decoration: none;
 }
 .search-div{
@@ -184,49 +193,66 @@
     background-color: transparent;
     transition: all 0.3s ease-in-out;
 }
+.dropmeau{
+    margin-right: 66px;
+}
 .dropmeau ol{
     width: 100%;
-    height: 70px;
+    height: 48px;
     margin: 0;
     padding: 0;
+    /* background: #385ab2; */
 }
 .dropmeau ol>li{
     list-style: none;
     width: 100%;
-    height: 70px;
+    height: 48px;
     text-align: center;
-    line-height: 70px;
+    line-height: 48px;
     color: white;
 }
 .dropmeau ol>li:hover{
-    background-color: rgb(39,71,154);
+    /* background-color: rgb(39,71,154); */
     cursor: pointer;
 }
 .dropmeau :hover .meaulist{
-    height: 200px;
+    /* height: 200px; */
+    height: 40px;
+}
+.header-drop{
+    display: inline-block;
+    margin-left: 10px;
 }
 .meaulist{
     height: 0;
-    width: 150px;
+    width: 117px;
     margin: 0;
     padding: 0;
     overflow: hidden;
     position: absolute;
     z-index: 2000;
     transition: all 0.3s ease-in-out;
-    background-color: rgb(56,90,178);
+    background-color: #e9f2fc;
+}
+.poweroff{
+    display: inline-block;
+    color: #9E9E9E;
+    margin-right: 10px;
+
 }
 .meaulist li{
     width: 100%;
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     list-style: none;
-    color: white;
+    color: #000000;
     cursor: pointer;
+    border: 1px solid #d5deea;
+    box-sizing: border-box;
 }
 .meaulist li:hover{
-    background-color: rgb(39,71,154);
+    background-color: #e9f2fc;
 }
 
 
@@ -264,6 +290,8 @@
     background-color: #d2dff3;
 }
 .dropli{
+    color: #717171;
+    font-size: 14px;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -289,13 +317,14 @@
     width: 24px;
     height: 24px;
     margin-right: 10px;
-    background-image: url('/images/dashboard/manage.png');
+    /* background-image: url('/images/dashboard/manage.png'); */
 }
 .oper-icon {
     margin-left: 4px;
     display: inline-block;
     width: 15px;
     height: 9px;
+    background: #385ab2;
     background-image: url('/images/dashboard/arr.png');
 }
 /*.search-content{*/

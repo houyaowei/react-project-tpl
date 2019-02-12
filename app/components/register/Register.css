@@ -1,0 +1,104 @@
+.error-msg{
+    position: absolute;
+    left: 40%;
+    margin-top: 23%;
+    color: red;
+}
+.registerBox {
+    width: 100%;
+}
+.register {
+    display: flex;
+    flex-direction: column;
+    width: 1366px;
+    /* min-width: 1345px; */
+    height: 100%;
+    margin: 0 auto;
+
+}
+.register_content {
+    position: relative;
+
+}
+.error-msg2{
+    width: 330px;
+    color: red;
+    left:38%;
+    margin-top: 560px;
+}
+.register__inner_user{
+    display: inline-block;
+    margin-top: 12%;
+    color: #495db1;
+    font-size: 24px;
+    width:100%;
+    text-align: center;
+    border-top: none;
+}
+.user-icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+    width: 23px;
+    height: 23px;
+}
+.pass-icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+    width: 23px;
+    height: 23px;
+}
+.register-inner__btn {
+    margin-top: 68px;
+    margin-left: 30px;
+}
+.form-group{
+    margin-top: 20px;
+}
+.register-footer{
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-top: 170px;
+    text-align: center;
+}
+.register-login{
+    display: block;
+    margin-left: 58%;
+    margin-top: 1%;
+    
+}
+.register-button{
+    /* width: 380px; */
+    height: 40px;
+    font-size: 16px;
+    color: #fff;
+    /* font-weight: bold; */
+    background-color: #3e7afe!important;
+}
+.register-button:hover{
+    background-color: #2050b8!important;
+    color: #fff!important;
+    transition: all 0.5s;
+}
+.register-button:active{
+    background-color: #3e7afe!important;
+    color: #fff!important;
+}
+.btn{
+    border-radius: 0px!important;
+}
+#content{
+    min-height: 655px!important;
+    min-width: 1366px!important;
+}
+@media only screen and (max-width: 1366px) {
+    .register-footer{
+        margin-top: -68px;
+    }
+    .register-inner__btn{
+        margin-top: 50px;
+    }
+    .register__inner_user{
+        margin-top: 2%;
+    }
+}

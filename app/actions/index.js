@@ -1,18 +1,16 @@
 import * as types from "../constants/ActionTypes";
 
-export const login = (name, pass) => {
-  console.log("action->login");
+export const login = (name, password, equipmenttype) => {
   return {
     type: types.XAHC_LOGIN,
-    //
     payload: {
       name,
-      pass
+      password,
+      equipmenttype
     }
   };
 };
 export const logout = (name, pass) => {
-  console.log("action->logout");
   return {
     type: types.XAHC_LOGOUT
   };

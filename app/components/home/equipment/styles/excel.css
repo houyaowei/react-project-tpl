@@ -1,0 +1,270 @@
+/* 导航栏下面的标签栏 */
+.meddie{
+    width: 100%;
+    height: 48px;
+    background: #ffffff;
+    border-bottom: 1px solid #c7d4e7;
+    box-sizing: border-box;
+    line-height: 48px;
+    padding-left: 30px;
+    display: flex;
+    box-shadow: 0px 6px 20px -10px #9ec1ee;
+}
+.meddie-font{
+    display: block;
+    font-size: 14px;
+    color: #4d4d4d;
+    margin-right: 6px;
+}
+.meddie-icon{
+    display: block;
+    line-height: 48px;
+    margin-right: 6px;
+}
+.meddie-update{
+    font-size: 14px;
+    color: #61adfb;
+}
+/* 主体部分外部盒子 */
+.outer_container{
+    margin: 30px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 0px 200px -40px #9ec1ee;
+}
+.out_container{
+    width: calc(100% - 60px);
+    margin: 30px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 0px 200px -40px #9ec1ee;
+}
+.searchbar{
+    padding-left: 0px!important;
+}
+/* 不可编辑弹窗样式 */
+/* 遮罩层 */
+/* .ant-modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(29,45,86,0.4);
+    height: 100%;
+    z-index: 1000;
+    filter: alpha(opacity=50);
+} */
+/* 表格样式 */
+.update-done{
+    color: #fda129;
+}
+.update-ready{
+    color: #5ac490;
+}
+.update-force{
+    border: none!important;
+    background: none!important;
+    color: #ff2f2f;
+}
+.update-force:hover{
+    background: none!important;
+    color: none!important;
+}
+.update-unforce{
+    border: none!important;
+    background: none!important;
+    color: #49c087;
+}
+.update-unforce:hover{
+    background: none!important;
+    color: none!important;
+}
+.update-disabled{
+    border: none!important;
+    background: none!important;
+    color: #999999!important;
+}
+/* 按钮样式 */
+/* 添加按钮，正常样式 */
+.add-fir{
+    width: 88px;
+    height: 30px;
+    background: #e5eeff!important;
+    font-size: 14px;
+    line-height: 30px;
+    color: #5595eb;
+    border: 1px solid #b6ceff;
+    box-sizing: border-box;
+    border-radius: 0px!important;
+    padding: 0px!important;
+}
+/* .add-fir:hover{
+    box-shadow: 0px 0px 5px 0px #9ec1ee;
+    transition: all 0.5s;
+    background: #e5eeff!important;
+} */
+.add-fir:active{
+    background: #e5eeff!important;
+    /* box-shadow: 0px 0px 5px 0px #9ec1ee; */
+    transition: all 0.5s;
+} 
+/* 添加按钮中的icon样式 */
+.fir-img{
+    display: inline-block;
+    margin-right: 6px;
+    margin-top: -2px;
+}
+/* 添加按钮，大 */
+.add-big{
+    width: 118px;
+    height: 30px;
+    background: #e5eeff!important;
+    font-size: 14px;
+    line-height: 30px;
+    color: #5595eb;
+    border: 1px solid #b6ceff;
+    box-sizing: border-box;
+    border-radius: 0px!important;
+    padding: 0px!important;
+}
+/* .add-fir:hover{
+    box-shadow: 0px 0px 5px 0px #9ec1ee;
+    transition: all 0.5s;
+    background: #e5eeff!important;
+} */
+.add-big:active{
+    background: #e5eeff!important;
+    /* box-shadow: 0px 0px 5px 0px #9ec1ee; */
+    transition: all 0.5s;
+} 
+/* 添加按钮，中 */
+.add-middle{
+    width: 102px;
+    height: 30px;
+    background: #e5eeff!important;
+    font-size: 14px;
+    line-height: 30px;
+    color: #5595eb;
+    border: 1px solid #b6ceff;
+    box-sizing: border-box;
+    border-radius: 0px!important;
+    padding: 0px!important;
+}
+/* .add-fir:hover{
+    box-shadow: 0px 0px 5px 0px #9ec1ee;
+    transition: all 0.5s;
+    background: #e5eeff!important;
+} */
+.add-middle:active{
+    background: #e5eeff!important;
+    /* box-shadow: 0px 0px 5px 0px #9ec1ee; */
+    transition: all 0.5s;
+} 
+/* 详情按钮 */
+.detail-font{
+    display: block;
+    width: 100px;
+    height: 30px;
+    color: #4985ff;
+    background: #e2effd;
+    text-align: center;
+    line-height: 30px;
+    /* transition: all 0.2s; */
+}
+.detail-font:hover{
+    /* box-shadow: 0px 0px 5px 0px #9ec1ee;
+    transition: all 0.5s; */
+    color: #ffffff;
+    background: #92b6ff;
+    transition: all 0.5s;
+}
+.detail-font:active{
+    /* background: #ffffff;
+    box-shadow: 0px 0px 5px 0px #9ec1ee;
+    transition: all 0.5s; */
+    color: #ffffff;
+    background: #92b6ff;
+    transition: all 0.5s;
+} 
+/* 搜索按钮 */
+.abutton {
+    display: inline-block;
+    width: 66px;
+    height: 30px;
+    color: #4985ff;
+    line-height: 30px;
+    text-align: center;
+    background-color: #e5eeff;
+    border: 1px solid #b6ceff;
+    margin-left: 20px;
+    text-decoration: none;
+    border-radius: 0px!important;
+  }
+  .abutton:hover{
+    color: #ffffff;
+    background-color: #92b6ff;
+    border: 1px solid #6d9dff; 
+    transition: all 0.5s; 
+  }
+  .edit-point{
+      cursor: pointer;
+  }
+  /* 错误提示语 */
+  .errorMsg{
+      color:red;
+  }
+  /*删除按钮样式*/
+.udeletebtn {
+    font-size: 14px;
+    color: #ff4b4b;
+    transition: all 0.2s ease;
+  }
+  .udeletebtn:hover {
+    color: #ff0000;
+  }
+  .udeleteicon {
+    display: inline-block;
+    box-sizing:content-box;
+    margin-bottom: -3px;
+    margin-right: 18px;
+    margin-left: 5px;
+    /* background-size: contain;
+    background-repeat: no-repeat;
+    background: url("/images/config/delete.png"); */
+  }
+  .iconImg {
+    display: inline-block;
+    box-sizing:content-box;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  /*编辑按钮样式*/
+
+.uediticon {
+    display: inline-block;
+    box-sizing:content-box;
+    /* width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background: url("/images/config/edit.png"); */
+    margin-bottom: -3px;
+    margin-left: 5px;
+    margin-right: 18px;
+    color: #40a9ff;
+    cursor: pointer;
+  }
+  /*添加角色按钮样式*/
+.uroleicon {
+    display: inline-block;
+    box-sizing:content-box;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* background: url("/images/config/role.png"); */
+    margin-bottom: -3px;
+    margin-left: 5px;
+    margin-right: 18px;
+  }

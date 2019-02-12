@@ -44,25 +44,25 @@ a:link,a:visited{ text-decoration:none !important;}
 
 
 .ant-layout-sider-children{
-  background-color: #2d3e50;
-  min-height: 100vh;
+  background-color: #353b5e;
+  min-height: 75vh;
 }
 .ant-layout-sider-children ul{
-  background-color: #2d3e50;
+  background-color: #353b5e;
 }
 .ant-layout-sider-children ul li{
   color:#ffffff;
   font-size: 14px;
 }
 .ant-menu-item-selected{
-  background-color: #44566f !important;
+  background-color: #353b5e !important;
 }
 .ant-layout-sider-trigger{
-  background-color: #2d3e50 !important;
+  background-color: #353b5e !important;
 }
 
 .ant-menu-dark,.ant-menu-inline.ant-menu-sub{
-  background-color: #2d3e50 !important;
+  background-color: #353b5e !important;
 }
 
 
@@ -93,9 +93,9 @@ a:link,a:visited{ text-decoration:none !important;}
 .ant-table-row input{
   max-width: 120px !important;
 }
-.ant-table-wrapper{
+/* .ant-table-wrapper{
   padding: 0 10px 0 10px !important;
-}
+} */
 /*分页符激活后子元素颜色*/
 .ant-pagination-item-link:after{
   width: 30px !important;

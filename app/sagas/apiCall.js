@@ -1,7 +1,11 @@
-import ajaxServiceApi from "../api/ajaxServiceApi";
+import ajaxServiceApi from "../api/serviceApi";
 
-export const loginMethod = () => {
-    console.log('apiCall->loginMethod');
-    console.log(ajaxServiceApi.login);
-    return ajaxServiceApi.login().then(res => res);
-  };
+// login
+export const loginMethod = payload => {
+  return ajaxServiceApi.login(payload).then(res => res);
+};
+
+// user register
+export const registerMethod = payload => {
+  return ajaxServiceApi.register(payload).then(res => res);
+};

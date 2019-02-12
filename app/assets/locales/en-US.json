@@ -1,0 +1,11 @@
+{
+  "login": {
+  	"loginBtn":"Login",
+  	"remember": "Remember Pass"
+  },
+  "main" : {
+  	"topBar" : {
+
+  	}
+  }
+}

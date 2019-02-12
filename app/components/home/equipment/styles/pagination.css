@@ -1,0 +1,74 @@
+.ant-pagination,.ant-table-pagination{
+    max-width: 450px!important;
+    margin: 60px auto!important;
+    overflow: hidden!important;
+    float: none!important;
+}
+.ant-pagination-item{
+    width: 30px!important;
+    height: 30px!important;
+    margin-right: 10px!important;
+    background: #e7ebee!important;
+    font-size: 14px!important;
+    color: #999999!important;
+    border-radius: 0px!important;
+    text-align: center!important;
+    line-height: 30px!important;
+}
+.ant-pagination-item > a{
+    display: block!important;
+    width: 100%!important;
+    height: 100%!important;
+    font-size: 14px!important;
+    color: #999999!important;
+    border-radius: 0px!important;
+    text-align: center!important;
+    line-height: 30px!important;
+}
+.ant-pagination-item-active{
+    background: #61adfb!important;
+    font-size: 14px!important;
+    border: none!important;
+}
+.ant-pagination-item-active > a{
+    display: block!important;
+    width: 100%!important;
+    height: 100%!important;
+    text-align: center!important;
+    line-height: 30px!important;
+    color: #ffffff!important;
+}
+.ant-pagination-item > a{
+    margin: 0px!important;
+}
+.ant-pagination-prev{
+    width: 30px!important;
+    height: 30px!important;
+    margin-right: 10px!important;
+    background: #e7ebee!important;
+    border-radius: 0px!important;
+}
+.ant-pagination-prev > .ant-pagination-item-link{
+    font-size: 14px!important;
+    color: #999999!important;
+    display: block!important;
+    width: 100%!important;
+    height: 100%!important;
+    text-align: center!important;
+    line-height: 30px!important;
+}
+.ant-pagination-next{
+    width: 30px!important;
+    height: 30px!important;
+    background: #e7ebee!important;
+    border-radius: 0px!important;
+}
+.ant-pagination-next > .ant-pagination-item-link{
+    font-size: 14px!important;
+    color: #999999!important;
+    display: block!important;
+    width: 100%!important;
+    height: 100%!important;
+    text-align: center!important;
+    line-height: 30px!important;
+}

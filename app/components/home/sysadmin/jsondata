@@ -1,0 +1,124 @@
+[
+  {
+      "children": [
+          {
+              "validateType": "regex",
+              "children": [],
+              "available": true,
+              "name": "002211fewfd1111121dsd1sff",
+              "index": 11,
+              "pid": 50,
+              "id": 17,
+              "url": "/webfileupapplication.*",
+              "resourceType": "button"
+          },
+          {
+              "validateType": "regex",
+              "children": [],
+              "available": true,
+              "name": "package",
+              "index": 0,
+              "pid": 2,
+              "id": 2,
+              "url": "/webiotupgradeservice.*",
+              "resourceType": "button"
+          },
+          {
+              "validateType": "regex",
+              "children": [],
+              "available": true,
+              "name": "company",
+              "index": 0,
+              "pid": 1,
+              "id": 1,
+              "url": "/webuser.*",
+              "resourceType": "button"
+          }
+      ],
+      "available": true,
+      "name": "企业管理",
+      "index": 1,
+      "pid": 6,
+      "id": 11,
+      "resourceType": "menu"
+  },
+  {
+      "validateType": "regex",
+      "children": [],
+      "available": true,
+      "name": "few ",
+      "index": 3,
+      "pid": 35,
+      "id": 12,
+      "url": "/webfileupapplication.*",
+      "resourceType": "menu"
+  },
+  {
+      "validateType": "regex",
+      "children": [
+          {
+              "validateType": "field",
+              "children": [],
+              "available": true,
+              "name": "sasa",
+              "index": 0,
+              "pid": 52,
+              "id": 18,
+              "url": "dsad",
+              "resourceType": "button"
+          }
+      ],
+      "available": true,
+      "name": "fewfdsff",
+      "index": 4,
+      "pid": 36,
+      "id": 13,
+      "url": "/webfileupapplication.*",
+      "resourceType": "menu"
+  },
+  {
+      "validateType": "regex",
+      "children": [],
+      "available": true,
+      "name": "fewfd11sff",
+      "index": 4,
+      "pid": 37,
+      "id": 14,
+      "url": "/webfileupapplication.*",
+      "resourceType": "menu"
+  },
+  {
+      "validateType": "regex",
+      "children": [
+          {
+              "validateType": "regex",
+              "children": [],
+              "available": false,
+              "name": "fdfd",
+              "index": 0,
+              "pid": 53,
+              "id": 19,
+              "url": "dsdasdsa",
+              "resourceType": "button"
+          }
+      ],
+      "available": true,
+      "name": "ssss0011fewfd1111121dsd1sff",
+      "index": 11,
+      "pid": 49,
+      "id": 16,
+      "url": "/webfileupapplication.*",
+      "resourceType": "menu"
+  },
+  {
+      "validateType": "regex",
+      "children": [],
+      "available": true,
+      "name": "00221144fewfd1111121dsd1sff",
+      "index": 2,
+      "pid": 59,
+      "id": 20,
+      "url": "/webfileupapplication.*",
+      "resourceType": "menu"
+  },
+],                 请问下去过滤出包含id的值为下面数组[16, 2, 17]的对象 

@@ -1,0 +1,24 @@
+{
+  "name": "koa-mock-server",
+  "version": "1.0.0",
+  "description": "Mocker server for front end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "koa"
+  ],
+  "author": "houyw",
+  "license": "MIT",
+  "dependencies": {
+    "global": "^4.3.2",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-combine-routers": "^4.0.2",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.10",
+    "nodemon": "^1.18.3"
+  }
+}

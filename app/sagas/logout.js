@@ -1,18 +1,14 @@
-import { put, call, take } from 'redux-saga/effects'
-import * as actionTypes from '../constants/actionTypes'
-import {loginMethod } from './apiCall';
+import { put, call } from "redux-saga/effects";
+import * as actionTypes from "../constants/ActionTypes";
 
 export function* logout() {
-    try {
-      console.log("saga-> logout");
-      yield put({type: actionTypes.LOGOUT_SAGA, loginStatus: false });
+  try {
+    yield put({ type: actionTypes.LOGOUT_SAGA, loginStatus: false });
+  } catch (err) {
+    yield put({ type: actionTypes.ERROR });
+  }
+}
 
-    } catch (err) {
-      yield put({type: actionTypes.ERROR})
-    }
-  }
-  
-  export function* logoutFlow() {
-    console.log("saga-> logoutFlow");
-    yield call(logout);
-  }
+export function* logoutFlow() {
+  yield call(logout);
+}
