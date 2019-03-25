@@ -13,7 +13,7 @@
 
 * run the demo
 
-> yarn run start:dev
+> yarn run start
 
 
 ### resource
