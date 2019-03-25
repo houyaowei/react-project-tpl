@@ -16,7 +16,6 @@
     "global": "^4.3.2",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
-    "koa-combine-routers": "^4.0.2",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.10",
     "nodemon": "^1.18.3"

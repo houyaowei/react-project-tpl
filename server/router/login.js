@@ -1,14 +1,9 @@
 let Router = require("koa-router");
+
+const loginRouter = new Router();
+
 let { login } = require("../controllers/login");
 
-// exports = loginRouter;
+loginRouter.post("/user/login", login);
 
-function loginInterceptor(app){
-	const loginRouter = new Router();
-	loginRouter.post("/user/login", login);
-
-	app.use(loginRouter.routes());
-	app.use(loginRouter.allowedMethods());
-}
-
-module.exports = loginInterceptor;
+exports = loginRouter;
