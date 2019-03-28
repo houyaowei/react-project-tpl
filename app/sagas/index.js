@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import { takeEvery } from "redux-saga/effects";
+import { all, takeEvery } from "redux-saga/effects";
 import * as types from "../constants/ActionTypes";
 import { loginFlow } from "./login";
 import { logoutFlow } from "./logout";
@@ -14,7 +14,7 @@ import {
 } from "./systemManage/permissionManage/callApi";
 
 export default function* mySaga() {
-  yield [
+  yield all([
     takeEvery(types.XAHC_LOGIN, loginFlow),
     takeEvery(types.XAHC_LOGOUT, logoutFlow),
     takeEvery(types.XAHC_REGISTER, registerFlow),
@@ -25,5 +25,5 @@ export default function* mySaga() {
     takeEvery(types.XAHC_UPDATE, updateMethod),
     takeEvery(types.XAHC_SEARCHGET, searchMethod),
     takeEvery(types.XAHC_UPDATE_COMPANY_INFO, updateCompanyInfoMethod)
-  ];
+  ]);
 }
