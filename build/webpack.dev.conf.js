@@ -10,6 +10,7 @@ const PORT = process.env.PORT && Number(process.env.PORT);
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: "development",
+  cache: true,
   devtool: "cheap-module-eval-source-map",
   devServer: {
     contentBase: __dirname + "/dist",

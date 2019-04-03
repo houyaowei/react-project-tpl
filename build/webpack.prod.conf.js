@@ -4,6 +4,7 @@ const HTMLWebpachPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+//考虑使用 ParallelUglifyPlugin
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const merge = require("webpack-merge");
 const baseWebpackConfig = require("./webpack.base.config");

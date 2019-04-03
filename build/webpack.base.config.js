@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+//¿¼ÂÇfast-sass-loader´úÌæsass-loader
 
 module.exports = {
   resolve: {
@@ -20,16 +21,16 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
-          // 'postcss-loader',
+          "postcss-loader",
           "sass-loader"
         ]
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: "babel-loader?cacheDirectory=true",
         options: {
           presets: ["react", "es2015", "stage-0"]
         }
