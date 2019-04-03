@@ -3,11 +3,10 @@
     {
       "files": "*.js",
       "options": {
-        "printWidth": 80,
+        "printWidth": 100,
         "tabWidth": 2,
         "semi": true,
-        "bracketSpacing": true,
-        "singleQuote": true
+        "bracketSpacing": true
       }
     }
   ]
