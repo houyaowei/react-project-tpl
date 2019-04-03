@@ -70,6 +70,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.2.7",
+    "url-loader": "^1.1.2",
     "webpack": "^4.25.1",
     "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.1.2",

@@ -1,9 +1,12 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-//¿¼ÂÇfast-sass-loader´úÌæsass-loader
+//è€ƒè™‘fast-sass-loaderä»£æ›¿sass-loader
 
 module.exports = {
   resolve: {
+    alias: {
+      "@images": path.join(__dirname, "../app/assets/images")
+    },
     extensions: [".ts", ".js"]
   },
   entry: [path.resolve(__dirname, "../app/index.js")],
@@ -16,7 +19,14 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg|svg|jpeg|mp4)$/,
-        use: ["file-loader"]
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
