@@ -18,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|svg|jpeg|mp4)$/,
+        test: /\.(png|jpg|svg|jpeg)$/,
         use: [
           {
             loader: "url-loader",
@@ -31,8 +31,15 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           "css-loader",
+          // {
+          //   loader: "css-loader",
+          //   options: {
+          //     modules: true,
+          //     localIdentName: "[name]__[local]-[hash:base64:5]"
+          //   }
+          // },
           "postcss-loader",
           "sass-loader"
         ]

@@ -15,9 +15,12 @@ const prodWebpackconf = merge(baseWebpackConfig, {
   devtool: false,
   optimization: {
     splitChunks: {
+      chunks: "all",
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
       cacheGroups: {
         vendor: {
-          chunks: "initial",
+          chunks: "all",
           test: path.resolve(__dirname, "../node_modules"),
           name: "duplication",
           enforce: true
