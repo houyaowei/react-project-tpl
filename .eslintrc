@@ -3,7 +3,7 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["react"],
+  "plugins": ["react","react-hooks"],
   "parser": "babel-eslint",
   "extends": "airbnb",
   "parserOptions": {
@@ -15,6 +15,7 @@
     }
   },
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
     "quotes": ["error", "double", { "avoidEscape": true }],
     "no-unused-vars": 0,
     "import/no-unresolved" : 0,
