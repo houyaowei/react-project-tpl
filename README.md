@@ -1,12 +1,20 @@
-# react前端平台
+## react前端模板
 
-### install nodejs
+ 提供一站式的react项目开发模板，完全实现0配置，你可以享受到如下服务：
+ 
+ - 基于流行的三方库:redux,saga,router等。
+ - 及时上手，不用其他配置即可进行业务开发。
+ - 提供前端mock server，真正实现前后端分离
+ - 自动提供eslint检查
+ - 打包自动优化
+
+#### install nodejs
 > https://nodejs.org/en/
 
-### install yarn
+#### install yarn
 > https://yarnpkg.com/en/docs/install
 
-### install project node packages
+#### install project node packages
 * install by yarn or npm 
 
 >  yarn install or npm install 
@@ -16,7 +24,7 @@
 > yarn run start
 
 
-### resource
+#### resource
 [React](https://reactjs.org/)
 
 [Redux 中文](http://www.redux.org.cn/)
@@ -25,23 +33,22 @@
 
 [Redux-saga](https://github.com/redux-saga/redux-saga)
 
-[React-Native](https://facebook.github.io/react-native/)
 
 [ES6](http://es6.ruanyifeng.com/)
 
-### run mock server
+#### run mock server
 
 > cd server directory
 > yarn install
 > yarn start
 
-### fix error
+#### fix error
 
 * error Msg:The engine "node" is incompatible with this module. Expected version ">=4 <=9".
 
 > resolve :  yarn config set ignore-engines true
 
-### code formate
+#### code formate
 * vs code  setting
 > "editor.formatOnSave": false,
     "[javascript]": {
@@ -60,3 +67,6 @@ package.json中配置
   "eslint"
 ]
 ```
+
+#### questions
+如果问题请及时提issue。
