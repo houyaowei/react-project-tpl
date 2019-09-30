@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 //考虑fast-sass-loader代替sass-loader
 
 module.exports = {
@@ -25,21 +26,40 @@ module.exports = {
             options: {
               limit: 8192
             }
+          },
+          {
+            loader: "image-webpack-loader",
+            // 配置不同图片的质量
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              optipng: {
+                enabled: true
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false
+              },
+              webp: {
+                quality: 75
+              }
+            }
           }
         ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          // {
-          //   loader: "css-loader",
-          //   options: {
-          //     modules: true,
-          //     localIdentName: "[name]__[local]-[hash:base64:5]"
-          //   }
-          // },
+          // {   loader: "css-loader",   options: {     modules: true,     localIdentName:
+          // "[name]__[local]-[hash:base64:5]"   } },
           "postcss-loader",
           "sass-loader"
         ]
@@ -49,7 +69,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader?cacheDirectory=true",
         options: {
-          presets: ["react", "es2015", "stage-0"]
+          presets: ["@babel/preset-react"]
         }
       },
       {

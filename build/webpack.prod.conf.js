@@ -22,7 +22,7 @@ const prodWebpackconf = merge(baseWebpackConfig, {
         vendor: {
           chunks: "all",
           test: path.resolve(__dirname, "../node_modules"),
-          name: "duplication",
+          name: "duplication-[hash:5]",
           enforce: true
         }
       }
@@ -30,29 +30,17 @@ const prodWebpackconf = merge(baseWebpackConfig, {
   },
   plugins: [
     //按出现顺序排列模块。 经常引用的模块和块会设置较短的id，节省空间
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack
+      .optimize
+      .OccurrenceOrderPlugin(),
     new CleanWebpackPlugin(["dist"]),
-    // new UglifyJsPlugin({
-    //   test: /\.js($|\?)/i,
-    //   sourceMap: true,
-    //   parallel: true,
-    //   exclude: /node_modules/,
-    //   uglifyOptions: {
-    //     compress: {
-    //       warnings: false,
-    //       drop_console: true
-    //     }
-    //   }
-    // }),
-    new HTMLWebpachPlugin({
-      title: "hc-portal-fe",
-      template: "./app/assets/index_prod.html"
-    }),
+    // new UglifyJsPlugin({   test: /\.js($|\?)/i,   sourceMap: true,   parallel:
+    // true,   exclude: /node_modules/,   uglifyOptions: {     compress: {
+    // warnings: false,       drop_console: true     }   } }),
+    new HTMLWebpachPlugin({title: "hc-portal-fe", template: "./app/assets/index_prod.html"}),
 
     new CopyWebpackPlugin(config.copys),
-    new MiniCssExtractPlugin({
-      filename: "styles.[hash].css"
-    })
+    new MiniCssExtractPlugin({filename: "styles.[hash].css"})
   ]
 });
 module.exports = new Promise((resolve, reject) => {
