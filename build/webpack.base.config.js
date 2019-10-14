@@ -60,7 +60,17 @@ module.exports = {
           "css-loader",
           // {   loader: "css-loader",   options: {     modules: true,     localIdentName:
           // "[name]__[local]-[hash:base64:5]"   } },
-          "postcss-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => [
+                require("autoprefixer")({
+                  browsers: ["last 2 versions", ">5%", "ios 7"]
+                })
+              ]
+            }
+          },
+
           "sass-loader"
         ]
       },

@@ -21,6 +21,7 @@
     "report": "webpack-bundle-analyzer --port 8888 analysis/stats.json"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "antd": "^3.8.2",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
@@ -39,7 +40,6 @@
     "redux": "^3.7.2",
     "redux-saga": "^1.0.2",
     "whatwg-fetch": "^3.0.0",
-    "@babel/polyfill": "^7.6.0",
     "wolfy87-eventemitter": "^5.2.6"
   },
   "devDependencies": {
@@ -57,6 +57,7 @@
     "@babel/runtime-corejs2": "^7.6.2",
     "@babel/traverse": "^7.6.2",
     "@babel/types": "^7.6.1",
+    "autoprefixer": "^9.6.5",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
