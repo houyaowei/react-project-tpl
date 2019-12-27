@@ -14,16 +14,16 @@ import left from "../../assets/images/login/left.png";
 
 const Option = Select.Option;
 
-// const SUPPOER_LOCALES = [
-//   {
-//     name: "English",
-//     value: "en-US"
-//   },
-//   {
-//     name: "简体中文",
-//     value: "zh-CN"
-//   }
-// ];
+const SUPPOER_LOCALES = [
+  {
+    name: "English",
+    value: "en-US"
+  },
+  {
+    name: "简体中文",
+    value: "zh-CN"
+  }
+];
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -38,24 +38,32 @@ class Login extends React.Component {
     this.register = this.register.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
+  static getDerivedStateFromProps(props, state){
+    const {Login: loginStatus, loginData} = props;
+    console.log(`loginStatus, ${loginStatus}`);
+    return null;
+  }
+  getSnapshotBeforeUpdate(prevProps,prevState){
 
+  }
   componentWillReceiveProps(nextProps) {
-    const { Login: loginStatus, loginData } = nextProps;
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    console.log("componentWillReceiveProps");
+    // const { Login: loginStatus, loginData } = nextProps;
+    // const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
-    if (loginStatus === 1) {
-      if (userInfo.isadmin === false) {
-        if (loginData.data.length === 0) {
-          message.error("该用户无任何有效权限，请联系管理员添加有效权限");
-          return;
-        } else {
-          history.push(nextProps.loginData.data[0].url);
-          return;
-        }
-      }
+    // if (loginStatus === 1) {
+    //   if (userInfo.isadmin === false) {
+    //     if (loginData.data.length === 0) {
+    //       message.error("该用户无任何有效权限，请联系管理员添加有效权限");
+    //       return;
+    //     } else {
+    //       history.push(nextProps.loginData.data[0].url);
+    //       return;
+    //     }
+    //   }
 
-      history.push(this.MAINPAGEURL);
-    }
+    //   history.push(this.MAINPAGEURL);
+    // }
   }
 
   updateName(e) {
@@ -71,35 +79,42 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
+    fetch("/user/test", {
+      method: "get"
+    }).then(d => {
+      console.log(d);
+    });
     const { actions } = this.props;
-    // this.loadLocales();
+    this.loadLocales();
     // actions.logout();
   }
-  // loadLocales() {
-  //   let currentLocale = intl.determineLocale({
-  //     urlLocaleKey: "lang",
-  //     cookieLocaleKey: "lang"
-  //   });
-  //   if (!_.find(SUPPOER_LOCALES, { value: currentLocale })) {
-  //     currentLocale = "en-US";
-  //   }
 
-  //   fetch(`/locales/${currentLocale}.json`)
-  //     .then(res => {
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data);
-  //       intl.init({
-  //         currentLocale,
-  //         locales: {
-  //           [currentLocale]: data
-  //         }
-  //       });
-  //       // After loading CLDR locale data, start to render
-  //       this.setState({ initDone: true });
-  //     });
-  // }
+  loadLocales() {
+    let currentLocale = intl.determineLocale({
+      urlLocaleKey: "lang",
+      cookieLocaleKey: "lang"
+    });
+    if (!_.find(SUPPOER_LOCALES, { value: currentLocale })) {
+      currentLocale = "en-US";
+    }
+
+    fetch(`/locales/${currentLocale}.json`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
+        intl.init({
+          currentLocale,
+          locales: {
+            [currentLocale]: data
+          }
+        });
+        // After loading CLDR locale data, start to render
+        this.setState({ initDone: true });
+      });
+  }
+
   onKeyDown(event) {
     if (event.keyCode === 13) {
       this.login();
@@ -230,15 +245,15 @@ class Login extends React.Component {
                   className="login-button"
                   id="login-btn"
                 >
-                  {/* {intl.get("login.loginBtn")} */}
-                  <span>登录</span>
+                  {intl.get("login.loginBtn")}
+                  {/* <span>登录</span> */}
                 </Button>
               </div>
             </form>
           </div>
         </div>
         <div>
-          <span className="login-footer">西安华信智慧数字科技有限公司</span>
+          <span className="login-footer">XXX公司版权所有</span>
         </div>
       </div>
     );

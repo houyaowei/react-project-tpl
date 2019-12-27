@@ -13,7 +13,6 @@ import usermanage from "../../../assets/images/dashboard/uermanage.png";
 import rolemanage from "../../../assets/images/dashboard/rolemanage.png";
 import authormanage from "../../../assets/images/dashboard/authormanage.png";
 import * as actions from "../../../actions/index";
-import "antd/dist/antd.css";
 import "./styles/layout.css";
 import "./styles/excel.css";
 
