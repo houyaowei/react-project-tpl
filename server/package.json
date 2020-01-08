@@ -17,7 +17,7 @@
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "nodemon": "^1.18.3"
   }
 }
