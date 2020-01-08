@@ -6,7 +6,13 @@
     "@babel/plugin-syntax-dynamic-import",
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "@babel/plugin-proposal-export-default-from",
-    ["import", { "libraryName": "antd", "libraryDirectory": "es" }],
+    [
+      "import", {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+        }
+    ],
     ["babel-plugin-styled-components", { "minify": false }],
     "@babel/plugin-transform-react-constant-elements"
   ]
