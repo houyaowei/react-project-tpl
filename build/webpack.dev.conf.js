@@ -25,7 +25,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new BundleAnalyzerPlugin({
-      statsFilename: "../../analysis/stats.json",
+      statsFilename: "../analysis/stats.json",
       analyzerMode: "disable",
       generateStatsFile: true,
       statsOptions: { source: false }

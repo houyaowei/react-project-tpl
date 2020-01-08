@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import _ from "lodash";
+import { trim } from "@utils";
 import { Table, Popconfirm, message, Modal, Input, Form, Icon, Select, Tabs, Tree } from "antd";
-import "../equipment/styles/excel.css";
+import "../layout/styles/excel.css";
 import * as action from "../../../actions/systemManage/permission";
 import editImg from "../../../assets/images/config/edit.png";
 import deleteImg from "../../../assets/images/config/delete.png";
@@ -708,7 +708,7 @@ class RoleManage extends React.Component {
         return;
       }
 
-      const available = _.trim(values.available);
+      const available = trim(values.available);
       delete values.rid;
 
       if (available === "无效") {

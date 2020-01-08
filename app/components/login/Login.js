@@ -1,11 +1,9 @@
 import React from "react";
 import md5 from "md5";
 import propTypes from "prop-types";
-import { Select, message } from "antd";
-import { Button, FormControl, FormGroup, InputGroup } from "react-bootstrap";
+import { Form, Select, message, Button, Input } from "antd";
 import intl from "react-intl-universal";
 import "whatwg-fetch";
-import _ from "lodash";
 import "./Login.css";
 import "./Index.scss";
 import history from "../../routes/history";
@@ -38,32 +36,33 @@ class Login extends React.Component {
     this.register = this.register.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
-  static getDerivedStateFromProps(props, state){
-    const {Login: loginStatus, loginData} = props;
-    console.log(`loginStatus, ${loginStatus}`);
-    return null;
-  }
-  getSnapshotBeforeUpdate(prevProps,prevState){
 
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   const { Login: loginStatus, loginData } = props;
+  //   // console.log(`loginStatus, ${loginStatus}`);
+  //   return null;
+  // }
+
+  // getSnapshotBeforeUpdate(prevProps, prevState) {}
+
   componentWillReceiveProps(nextProps) {
-    console.log("componentWillReceiveProps");
-    // const { Login: loginStatus, loginData } = nextProps;
-    // const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    // console.log("componentWillReceiveProps");
+    const { Login: loginStatus, loginData } = nextProps;
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
-    // if (loginStatus === 1) {
-    //   if (userInfo.isadmin === false) {
-    //     if (loginData.data.length === 0) {
-    //       message.error("该用户无任何有效权限，请联系管理员添加有效权限");
-    //       return;
-    //     } else {
-    //       history.push(nextProps.loginData.data[0].url);
-    //       return;
-    //     }
-    //   }
+    if (loginStatus === 1) {
+      if (userInfo.isadmin === false) {
+        if (loginData.data.length === 0) {
+          message.error("该用户无任何有效权限，请联系管理员添加有效权限");
+          return;
+        } else {
+          history.push(nextProps.loginData.data[0].url);
+          return;
+        }
+      }
 
-    //   history.push(this.MAINPAGEURL);
-    // }
+      history.push(this.MAINPAGEURL);
+    }
   }
 
   updateName(e) {
@@ -85,35 +84,35 @@ class Login extends React.Component {
       console.log(d);
     });
     const { actions } = this.props;
-    this.loadLocales();
+    // this.loadLocales();
     // actions.logout();
   }
 
-  loadLocales() {
-    let currentLocale = intl.determineLocale({
-      urlLocaleKey: "lang",
-      cookieLocaleKey: "lang"
-    });
-    if (!_.find(SUPPOER_LOCALES, { value: currentLocale })) {
-      currentLocale = "en-US";
-    }
+  // loadLocales() {
+  //   let currentLocale = intl.determineLocale({
+  //     urlLocaleKey: "lang",
+  //     cookieLocaleKey: "lang"
+  //   });
+  //   if (!_.find(SUPPOER_LOCALES, { value: currentLocale })) {
+  //     currentLocale = "en-US";
+  //   }
 
-    fetch(`/locales/${currentLocale}.json`)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        console.log(data);
-        intl.init({
-          currentLocale,
-          locales: {
-            [currentLocale]: data
-          }
-        });
-        // After loading CLDR locale data, start to render
-        this.setState({ initDone: true });
-      });
-  }
+  //   fetch(`/locales/${currentLocale}.json`)
+  //     .then(res => {
+  //       return res.json();
+  //     })
+  //     .then(data => {
+  //       // console.log(data);
+  //       intl.init({
+  //         currentLocale,
+  //         locales: {
+  //           [currentLocale]: data
+  //         }
+  //       });
+  //       // After loading CLDR locale data, start to render
+  //       this.setState({ initDone: true });
+  //     });
+  // }
 
   onKeyDown(event) {
     if (event.keyCode === 13) {
@@ -191,65 +190,57 @@ class Login extends React.Component {
           </div>
           <div className="login__inner__right">
             {errMsg ? <span className="error-msg error-msgs">{errMsg}</span> : null}
-            <form className="login-box">
-              <span className="login__inner_user inner_user">欢迎登录</span>
-              <FormGroup style={{ width: "100%", marginTop: 70 }}>
-                <InputGroup>
-                  {/* <InputGroup.Addon>
-                    <Icon type="user" style={{ fontSize: 23, color: "#999999" }} />
-                  </InputGroup.Addon> */}
-                  <FormControl
-                    style={{ width: 380, paddingLeft: 16 }}
-                    className="user-input"
-                    onChange={e => this.updateName(e)}
-                    type="text"
-                    onKeyDown={this.onKeyDown}
-                    placeholder="用户名"
-                    autoComplete="off"
-                    id="login-user"
-                  />
-                </InputGroup>
-              </FormGroup>
-              <FormGroup style={{ width: "100%", marginTop: 34 }}>
-                <InputGroup>
-                  {/* <InputGroup.Addon>
-                    <Icon type="lock" style={{ fontSize: 23, color: "#999999" }} />
-                  </InputGroup.Addon> */}
-                  <FormControl
-                    style={{ width: 380, paddingLeft: 16 }}
-                    type="text"
-                    onChange={e => this.updatePass(e)}
-                    id="login-pass"
-                    placeholder="密码"
-                    onKeyDown={this.onKeyDown}
-                    inputRef={ref => {
-                      this.password = ref;
-                    }}
-                    autoComplete="new-password"
-                    onFocus={() => {
-                      this.password.type = "password";
-                    }}
-                  />
-                </InputGroup>
-              </FormGroup>
-              <div className="login-register" role="button" onClick={this.register}>
-                {/* <Link to="/iot/register" style={{ fontSize: 14 }}> */}
-                <span>新公司注册</span>
-                {/* </Link> */}
-              </div>
-              <div className="login-inner__btn">
-                <Button
-                  style={{ width: 380 }}
-                  type="button"
-                  onClick={this.login}
-                  className="login-button"
-                  id="login-btn"
-                >
-                  {intl.get("login.loginBtn")}
-                  {/* <span>登录</span> */}
-                </Button>
-              </div>
-            </form>
+            <Form className="login-box">
+              <Form.Item>
+                <span className="login__inner_user inner_user">欢迎登录</span>
+              </Form.Item>
+              <Form.Item>
+                {" "}
+                <Input
+                  onChange={e => this.updateName(e)}
+                  size="large"
+                  onKeyDown={this.onKeyDown}
+                  placeholder="用户名"
+                  autoComplete="off"
+                  type="text"
+                  id="login-user"
+                />
+              </Form.Item>
+              <Form.Item>
+                <Input
+                  type="password"
+                  onChange={e => this.updatePass(e)}
+                  id="login-pass"
+                  size="large"
+                  placeholder="密码"
+                  onKeyDown={this.onKeyDown}
+                  inputRef={ref => {
+                    this.password = ref;
+                  }}
+                  autoComplete="new-password"
+                />
+              </Form.Item>
+              <Form.Item>
+                <div className="login-register" role="button" onClick={this.register}>
+                  {/* <Link to="/iot/register" style={{ fontSize: 14 }}> */}
+                  <span>新公司注册</span>
+                  {/* </Link> */}
+                </div>
+              </Form.Item>
+              <Form.Item>
+                <div className="login-inner__btn">
+                  <Button
+                    style={{ width: 380 }}
+                    type="button"
+                    onClick={this.login}
+                    className="login-button"
+                    id="login-btn"
+                  >
+                    <span>登录</span>
+                  </Button>
+                </div>
+              </Form.Item>
+            </Form>
           </div>
         </div>
         <div>

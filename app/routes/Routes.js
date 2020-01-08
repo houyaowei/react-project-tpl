@@ -5,7 +5,7 @@ import RenderRoutes from "./RenderRoutes";
 import LoginContainer from "../components/login/LoginContainer";
 import Container from "../container/Container";
 import Register from "../components/register/Register";
-import LayoutComponent from "../components/home/equipment/Layout";
+import LayoutComponent from "../components/home/layout/Layout";
 
 // global router config
 const routesConfig = [

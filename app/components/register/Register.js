@@ -3,11 +3,10 @@ import Types from "prop-types";
 // import ReactDOM from 'react-dom';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { message, Icon } from "antd";
+import { message, Icon, Button, Input } from "antd";
 // import md5 from 'md5';
 import "whatwg-fetch";
-import _ from "lodash";
-import { Button, FormControl, FormGroup, InputGroup } from "react-bootstrap";
+import { trim } from "@utils";
 import history from "../../routes/history";
 import * as action from "../../actions/Register";
 
@@ -70,8 +69,8 @@ class Register extends React.Component {
 
   register() {
     let { name, pass } = this.state;
-    name = _.trim(name);
-    pass = _.trim(pass);
+    name = trim(name);
+    pass = trim(pass);
 
     const regex = new RegExp(
       "^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?![,.#%+@!$&*-:;^_`]+$)" +
@@ -110,49 +109,31 @@ class Register extends React.Component {
       <div className="registerBox">
         <div className="register">
           <div className="register_content">
-            {errMsg ? (
-              <span className="error-msg error-msg2">{errMsg}</span>
-            ) : null}
+            {errMsg ? <span className="error-msg error-msg2">{errMsg}</span> : null}
             <form>
               <span className="register__inner_user">企业信息注册</span>
-              <FormGroup style={{ width: "31%", marginLeft: "38%" }}>
-                <InputGroup>
-                  <InputGroup.Addon>
-                    <Icon
-                      type="team"
-                      style={{ fontSize: 23, color: "#999999" }}
-                    />
-                  </InputGroup.Addon>
-                  <FormControl
-                    style={{ width: "70%" }}
-                    className="user-input"
-                    onChange={e => this.updateName(e)}
-                    type="text"
-                    onKeyDown={this.onKeyDown}
-                    placeholder="请输入企业名称"
-                    autoComplete="off"
-                  />
-                </InputGroup>
-              </FormGroup>
-              <FormGroup style={{ width: "31%", marginLeft: "38%" }}>
-                <InputGroup>
-                  <InputGroup.Addon>
-                    <Icon
-                      type="user"
-                      style={{ fontSize: 23, color: "#999999" }}
-                    />
-                  </InputGroup.Addon>
-                  <FormControl
-                    style={{ width: "70%" }}
-                    className="user-input"
-                    onChange={e => this.updatePass(e)}
-                    type="text"
-                    onKeyDown={this.onKeyDown}
-                    placeholder="请输入联系人"
-                    autoComplete="off"
-                  />
-                </InputGroup>
-              </FormGroup>
+              <Input
+                onChange={e => this.updateName(e)}
+                onKeyDown={this.onKeyDown}
+                placeholder="用户名"
+                autoComplete="off"
+                type="text"
+                id="login-user"
+              />
+              <Input
+                type="password"
+                onChange={e => this.updatePass(e)}
+                id="login-pass"
+                placeholder="密码"
+                onKeyDown={this.onKeyDown}
+                inputRef={ref => {
+                  this.password = ref;
+                }}
+                autoComplete="new-password"
+                onFocus={() => {
+                  this.password.type = "password";
+                }}
+              />
 
               <div className="register-inner__btn">
                 <Button
@@ -189,7 +170,4 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return { actions: bindActionCreators(action, dispatch) };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { bindActionCreators } from "redux";
 import md5 from "md5";
 import { connect } from "react-redux";
 import { Icon, Table, Popconfirm, Modal, Input, Form, Select, Transfer, message } from "antd";
-import _ from "lodash";
+import { trim } from "@utils";
 import * as action from "../../../actions/systemManage/permission";
-import "../equipment/styles/excel.css";
+import "../layout/styles/excel.css";
 import "./style/sysadmin.css";
 import editImg from "../../../assets/images/config/edit.png";
 import deleteImg from "../../../assets/images/config/delete.png";
@@ -712,10 +711,10 @@ class UserManage extends React.Component {
         return;
       }
 
-      const id = _.trim(values.id);
-      const uid = _.trim(values.uid);
-      const state = _.trim(values.state);
-      const superadmin = _.trim(values.superadmin);
+      const id = trim(values.id);
+      const uid = trim(values.uid);
+      const state = trim(values.state);
+      const superadmin = trim(values.superadmin);
       values.accounttype = values.accountType;
 
       if (state === "被锁定") {

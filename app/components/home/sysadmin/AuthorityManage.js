@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import _ from "lodash";
+import { trim } from "@utils";
 import { message, Icon, Table, Popconfirm, Modal, Input, Form, Select } from "antd";
 
 import * as action from "../../../actions/systemManage/permission";
@@ -709,7 +709,7 @@ class AuthorityManage extends React.Component {
       if (err) {
         return;
       }
-      const available = _.trim(values.available);
+      const available = trim(values.available);
       if (available === "无效") {
         values.available = "0";
       } else if (available === "有效") {

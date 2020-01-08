@@ -6,7 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   resolve: {
     alias: {
-      "@images": path.join(__dirname, "../app/assets/images")
+      "@images": path.join(__dirname, "../app/assets/images"),
+      "@utils": path.join(__dirname, "../app/components/utils/utils")
     },
     extensions: [".ts", ".js"]
   },
@@ -58,8 +59,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          // {   loader: "css-loader",   options: {     modules: true,     localIdentName:
-          // "[name]__[local]-[hash:base64:5]"   } },
           {
             loader: "postcss-loader",
             options: {
@@ -70,8 +69,13 @@ module.exports = {
               ]
             }
           },
-          'sass-loader'
+          "sass-loader"
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        include: path.resolve(__dirname, "../node_modules")
       },
       {
         test: /\.(js|jsx)$/,
@@ -85,6 +89,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader", "eslint-loader"]
+        // use: ["babel-loader"]
       },
       {
         test: /\.(otf|ttf|eot|woff|woff2)$/i,

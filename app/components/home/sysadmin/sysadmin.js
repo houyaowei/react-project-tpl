@@ -4,7 +4,7 @@ import UserManager from "./UserManage";
 import RoleManager from "./Rolemanage";
 import resManager from "./resManage";
 import dictionaryManage from "./dictionaryManage";
-import "./style/sysadmin.css";
+// import "./style/sysadmin.css";
 import { Layout, Menu, Icon } from "antd";
 const { Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
