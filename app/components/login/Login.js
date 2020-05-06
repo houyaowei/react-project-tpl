@@ -3,7 +3,6 @@ import md5 from "md5";
 import propTypes from "prop-types";
 import { Form, Select, message, Button, Input } from "antd";
 import intl from "react-intl-universal";
-import "whatwg-fetch";
 import "./Login.css";
 import "./Index.scss";
 import history from "../../routes/history";
@@ -15,12 +14,12 @@ const Option = Select.Option;
 const SUPPOER_LOCALES = [
   {
     name: "English",
-    value: "en-US"
+    value: "en-US",
   },
   {
     name: "简体中文",
-    value: "zh-CN"
-  }
+    value: "zh-CN",
+  },
 ];
 class Login extends React.Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class Login extends React.Component {
     this.state = {
       name: "",
       pass: "",
-      errMsg: ""
+      errMsg: "",
     };
     this.MAINPAGEURL = "/iot/equipment";
     this.REGISTERURL = "/iot/register";
@@ -67,20 +66,20 @@ class Login extends React.Component {
 
   updateName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
     });
   }
 
   updatePass(e) {
     this.setState({
-      pass: e.target.value
+      pass: e.target.value,
     });
   }
 
   componentDidMount() {
     fetch("/user/test", {
-      method: "get"
-    }).then(d => {
+      method: "get",
+    }).then((d) => {
       console.log(d);
     });
     const { actions } = this.props;
@@ -139,15 +138,15 @@ class Login extends React.Component {
     // }
     if (name === "" && pass === "") {
       this.setState({
-        errMsg: "用户名和密码不能为空"
+        errMsg: "用户名和密码不能为空",
       });
     } else if (name === "") {
       this.setState({
-        errMsg: "用户名不能为空"
+        errMsg: "用户名不能为空",
       });
     } else if (pass === "") {
       this.setState({
-        errMsg: "密码不能为空"
+        errMsg: "密码不能为空",
       });
     } else if (name && pass) {
       sessionStorage.setItem("loggedIn", true);
@@ -157,7 +156,7 @@ class Login extends React.Component {
       this.setState({ errMsg: "" });
     } else {
       this.setState({
-        errMsg: "用户名或密码不正确"
+        errMsg: "用户名或密码不正确",
       });
     }
   }
@@ -197,7 +196,7 @@ class Login extends React.Component {
               <Form.Item>
                 {" "}
                 <Input
-                  onChange={e => this.updateName(e)}
+                  onChange={(e) => this.updateName(e)}
                   size="large"
                   onKeyDown={this.onKeyDown}
                   placeholder="用户名"
@@ -209,12 +208,12 @@ class Login extends React.Component {
               <Form.Item>
                 <Input
                   type="password"
-                  onChange={e => this.updatePass(e)}
+                  onChange={(e) => this.updatePass(e)}
                   id="login-pass"
                   size="large"
                   placeholder="密码"
                   onKeyDown={this.onKeyDown}
-                  inputRef={ref => {
+                  inputRef={(ref) => {
                     this.password = ref;
                   }}
                   autoComplete="new-password"

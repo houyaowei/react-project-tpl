@@ -4,8 +4,6 @@ import Types from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { message, Icon, Button, Input } from "antd";
-// import md5 from 'md5';
-import "whatwg-fetch";
 import { trim } from "@utils";
 import history from "../../routes/history";
 import * as action from "../../actions/Register";
@@ -18,7 +16,7 @@ class Register extends React.Component {
     this.state = {
       name: "",
       pass: "",
-      errMsg: ""
+      errMsg: "",
     };
     this.formRef = React.createRef();
     this.register = this.register.bind(this);
@@ -51,13 +49,13 @@ class Register extends React.Component {
 
   updateName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
     });
   }
 
   updatePass(e) {
     this.setState({
-      pass: e.target.value
+      pass: e.target.value,
     });
   }
 
@@ -82,12 +80,12 @@ class Register extends React.Component {
     if (name && pass) {
       if (!userPattern.test(name)) {
         this.setState({
-          errMsg: "注册账号名称只能包含字母、数字、下划线"
+          errMsg: "注册账号名称只能包含字母、数字、下划线",
         });
       }
       if (!regex.test(pass)) {
         this.setState({
-          errMsg: "密码应6到16位，至少包含字母、数字、符号两种"
+          errMsg: "密码应6到16位，至少包含字母、数字、符号两种",
         });
       }
 
@@ -113,7 +111,7 @@ class Register extends React.Component {
             <form>
               <span className="register__inner_user">企业信息注册</span>
               <Input
-                onChange={e => this.updateName(e)}
+                onChange={(e) => this.updateName(e)}
                 onKeyDown={this.onKeyDown}
                 placeholder="用户名"
                 autoComplete="off"
@@ -122,11 +120,11 @@ class Register extends React.Component {
               />
               <Input
                 type="password"
-                onChange={e => this.updatePass(e)}
+                onChange={(e) => this.updatePass(e)}
                 id="login-pass"
                 placeholder="密码"
                 onKeyDown={this.onKeyDown}
-                inputRef={ref => {
+                inputRef={(ref) => {
                   this.password = ref;
                 }}
                 autoComplete="new-password"
@@ -161,13 +159,13 @@ class Register extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    registerStatus: state.register.get("registerStatus")
+    registerStatus: state.register.get("registerStatus"),
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return { actions: bindActionCreators(action, dispatch) };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

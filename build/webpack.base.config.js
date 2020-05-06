@@ -28,70 +28,46 @@ module.exports = {
               limit: 8192
             }
           },
-          {
-            loader: "image-webpack-loader",
-            // 配置不同图片的质量
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              },
-              optipng: {
-                enabled: true
-              },
-              pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4
-              },
-              gifsicle: {
-                interlaced: false
-              },
-              webp: {
-                quality: 75
-              }
-            }
-          }
+          // {   loader: "image-webpack-loader",   // 配置不同图片的质量   options: {     mozjpeg:
+          // {       progressive: true,       quality: 65     },     optipng: {
+          // enabled: true     },     pngquant: {       quality: [0.65, 0.9],       speed:
+          // 4     },     gifsicle: {       interlaced: false     },     webp: {
+          // quality: 75     }   } }
         ]
-      },
-      {
+      }, {
         test: /\.(sa|sc|c)ss$/,
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
+          "css-loader", {
             loader: "postcss-loader",
             options: {
-              plugins: () => [
-                require("autoprefixer")({
+              plugins: () => [require("autoprefixer")({
                   browsers: ["last 2 versions", ">5%", "ios 7"]
-                })
-              ]
+                })]
             }
           },
           "sass-loader"
         ]
-      },
-      {
+      }, {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          MiniCssExtractPlugin.loader, "css-loader"
+        ],
         include: path.resolve(__dirname, "../node_modules")
-      },
-      {
+      }, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader?cacheDirectory=true",
         options: {
           presets: ["@babel/preset-react"]
         }
-      },
-      {
+      }, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader", "eslint-loader"]
         // use: ["babel-loader"]
-      },
-      {
+      }, {
         test: /\.(otf|ttf|eot|woff|woff2)$/i,
         loader: "url?name=[path][name].[ext]"
       }

@@ -19,28 +19,28 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     proxy: [
       {
         context: ["/user", "/webuser"],
-        target: "http://localhost:8081"
-      }
-    ]
+        target: "http://localhost:8081",
+      },
+    ],
   },
   plugins: [
     new BundleAnalyzerPlugin({
       statsFilename: "../analysis/stats.json",
       analyzerMode: "disable",
       generateStatsFile: true,
-      statsOptions: { source: false }
+      statsOptions: { source: false },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpachPlugin({
       title: "hc-portal-fe",
-      template: "./app/assets/index.html"
+      template: "./app/assets/index.html",
     }),
     new CopyWebpackPlugin(config.copys),
     new MiniCssExtractPlugin({
-      filename: "styles.[hash].css"
-    })
-  ]
+      filename: "styles.[hash].css",
+    }),
+  ],
 });
 module.exports = new Promise((resolve, reject) => {
   resolve(devWebpackConfig);
