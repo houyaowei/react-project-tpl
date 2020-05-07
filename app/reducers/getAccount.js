@@ -9,7 +9,7 @@ const initState = Immutable.Map({
 const getAccount = (state = initState, action) => {
   switch (action.type) {
     case types.XAHC_EQU_ACCOUNT_SAGA:
-      if (action.resData.res.rtn_code === StatusCode.XAHC_SUCCESSED) {
+      if (action.resData.rtn_code === StatusCode.XAHC_SUCCESSED) {
         return state.set("accountData", action.resData.res.data);
       }
       return state.set("accountData", []);

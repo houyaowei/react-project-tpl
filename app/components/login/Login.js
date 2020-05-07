@@ -36,32 +36,14 @@ class Login extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   const { Login: loginStatus, loginData } = props;
-  //   // console.log(`loginStatus, ${loginStatus}`);
-  //   return null;
-  // }
+  static getDerivedStateFromProps(props, state) {
+    const { Login: loginStatus, loginData } = props;
 
-  // getSnapshotBeforeUpdate(prevProps, prevState) {}
-
-  componentWillReceiveProps(nextProps) {
-    // console.log("componentWillReceiveProps");
-    const { Login: loginStatus, loginData } = nextProps;
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
     if (loginStatus === 1) {
-      if (userInfo.isadmin === false) {
-        if (loginData.data.length === 0) {
-          message.error("该用户无任何有效权限，请联系管理员添加有效权限");
-          return;
-        } else {
-          history.push(nextProps.loginData.data[0].url);
-          return;
-        }
-      }
-
-      history.push(this.MAINPAGEURL);
+      history.push("/iot/equipment");
     }
+    return null;
   }
 
   updateName(e) {

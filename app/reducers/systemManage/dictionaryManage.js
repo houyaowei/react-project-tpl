@@ -4,13 +4,13 @@ import Immutable from "immutable";
 import { message } from "antd";
 
 const initState = Immutable.Map({
-  dicManageData: []
+  dicManageData: [],
 });
 
 const reduce = (state = initState, action) => {
   switch (action.type) {
     case type.SAGA_ADDDIC:
-      if (action.status.res.rtn_code == StatusCode.XAHC_SUCCESSED) {
+      if (action.status.rtn_code == StatusCode.XAHC_SUCCESSED) {
         message.success("添加成功！");
       } else {
         message.error("添加失败！");
@@ -19,7 +19,7 @@ const reduce = (state = initState, action) => {
       break;
 
     case type.SAGA_DELDIC:
-      if (action.status.res.rtn_code == StatusCode.XAHC_SUCCESSED) {
+      if (action.status.rtn_code == StatusCode.XAHC_SUCCESSED) {
         message.success("删除成功！");
       } else {
         message.error("删除失败！");
@@ -28,10 +28,10 @@ const reduce = (state = initState, action) => {
       break;
 
     case type.SAGA_GETDIC:
-      if (action.data.res.rtn_code == StatusCode.XAHC_SUCCESSED) {
+      if (action.data.rtn_code == StatusCode.XAHC_SUCCESSED) {
         switch (action.param.from) {
           case "userManage":
-            return state.set("dicManageData", action.data.res);
+            return state.set("dicManageData", action.data);
             break;
         }
       } else {
@@ -41,7 +41,7 @@ const reduce = (state = initState, action) => {
       break;
 
     case type.SAGA_UPDATEDIC:
-      if (action.status.res.rtn_code == StatusCode.XAHC_SUCCESSED) {
+      if (action.status.rtn_code == StatusCode.XAHC_SUCCESSED) {
         message.success("修改成功！");
       } else {
         message.error("修改失败！");

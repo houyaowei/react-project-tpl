@@ -5,6 +5,7 @@ import { loginMethod } from "./apiCall";
 export function* login(payload) {
   try {
     const loginStatus = yield call(loginMethod, payload);
+    console.log("login", loginStatus);
     yield put({ type: actionTypes.LOGIN_SAGA, loginStatus });
   } catch (err) {
     yield put({ type: actionTypes.ERROR });
