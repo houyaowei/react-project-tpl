@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "antd": "^3.8.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "install": "^0.12.1",
